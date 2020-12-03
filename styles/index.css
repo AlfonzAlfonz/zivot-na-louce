@@ -1,0 +1,44 @@
+@tailwind base;
+
+/* Write your own custom base styles here */
+h1 {
+  @apply text-6xl;
+}
+
+h2 {
+  @apply text-4xl;
+}
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
+body {
+  background: url("/bg.jpg");
+  background-size: cover;
+  background-position-y: bottom 0;
+  background-attachment: fixed;
+}
+
+.btn {
+  @apply px-12 py-3 bg-gray-700 text-white border-none inline-flex;
+}
+
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
+
+.hero-img {
+  background: url("/bg.jpg");
+}
+
+.section-img {
+  background: url("/bg.jpg");
+  background-attachment: fixed;
+}
+
+.hero {
+  background-size: cover;
+  background-position-y: bottom 0;
+  overflow: hidden
+}
