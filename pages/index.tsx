@@ -1,6 +1,6 @@
 import { FC } from "react";
-import Card from "../components/Card";
-import Layout from "../components/Layout";
+import Card from "components/Card";
+import Layout from "components/Layout";
 
 const Index: FC = () => {
   return (

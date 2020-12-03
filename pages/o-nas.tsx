@@ -1,7 +1,7 @@
+import Card from "components/Card";
+import Layout from "components/Layout";
 import { FC } from "react";
-import Layout from "../components/Layout";
-import Card from "../components/Card";
-import { FiInstagram, FiFacebook, FiTwitter } from "react-icons/fi";
+import { FiFacebook, FiInstagram, FiTwitter } from "react-icons/fi";
 
 const AboutUs: FC = () => {
   return (
