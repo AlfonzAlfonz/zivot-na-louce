@@ -37,7 +37,7 @@ const AboutUs: FC = () => {
       </div>
 
       <div className="mt-24 mb-24 py-16 bg-white">
-        <div className="flex flex-col mx-8 max-w-7xl m-auto">
+        <div className="flex flex-col mx-8 max-w-7xl md:m-auto">
           <h2 className="pb-8">Kontakt</h2>
           <div className="flex flex-col md:flex-row space-y-8 md:space-y-0">
             <div className="md:w-3/4">
