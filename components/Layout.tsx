@@ -35,21 +35,21 @@ const Layout: FC<Props> = ({ bg, title, children, noSupport }) => {
 
       <div className="min-h-screen">
         {children}
-      </div>
 
-      {!noSupport && (
-        <div ref={supportRef as any} className="flex justify-center min-h-screen pt-32" style={{ minHeight: "350px" }}>
-          <Card title="Podpořte nás" _body="items-center" className="items-center max-w-7xl mb-16">
-            <p className="text-center">
-              S obnovu podepsala vyspává plynu zachytit ně, ne dáli vypráví situace mor. Míra kopali multi-dimenzionálním ohřívání stránky
-              snowboardisté známý míst mlh padesátiminutový od zájmu Antarktida film uplatnění sníh uplyne, mu mě světu amokem bílé buněk petr
-              vědě písek a sen Vojtěchovi. Věnovat organizační řady zadře námořních pozornosti ke navrhovanou řízená tkví až slunečnímu
-              izolovanou. Má výhradně spatřovali součinných ji zde vede vymazala určitých nově tutanchamónovy výbavy k otázkou.
-            </p>
-            <Link href="/podpora"><a className="btn mt-4">Podpořit</a></Link>
-          </Card>
-        </div>
-      )}
+        {!noSupport && (
+          <div ref={supportRef as any} className="flex justify-center min-h-screen pt-32" style={{ minHeight: "350px" }}>
+            <Card title="Podpořte nás" _body="items-center" className="items-center max-w-7xl mb-16">
+              <p className="text-center">
+                S obnovu podepsala vyspává plynu zachytit ně, ne dáli vypráví situace mor. Míra kopali multi-dimenzionálním ohřívání stránky
+                snowboardisté známý míst mlh padesátiminutový od zájmu Antarktida film uplatnění sníh uplyne, mu mě světu amokem bílé buněk petr
+                vědě písek a sen Vojtěchovi. Věnovat organizační řady zadře námořních pozornosti ke navrhovanou řízená tkví až slunečnímu
+                izolovanou. Má výhradně spatřovali součinných ji zde vede vymazala určitých nově tutanchamónovy výbavy k otázkou.
+              </p>
+              <Link href="/podpora"><a className="btn mt-4">Podpořit</a></Link>
+            </Card>
+          </div>
+        )}
+      </div>
 
       <div
         className="flex flex-col md:flex-row md:flex-wrap justify-between bottom-0 z-20 text-white bg-gray-900 px-8 md:px-4 py-4 space-y-8 md:space-y-0 md:space-x-8"
