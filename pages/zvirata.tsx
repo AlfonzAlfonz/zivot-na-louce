@@ -1,43 +1,47 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { FC } from "react";
 import Layout from "components/Layout";
+import Card from "components/Card";
+import { GetStaticProps } from "next";
+import { request } from "../data/index";
+import { animalsQuery } from "../data/animals";
+import { AnimalsQuery, Asset } from "../graphql";
+import Richtext from "components/Richtext";
+import Img from "next/image";
+import CardStrip from "components/CardStrip";
 
-const Aminals: FC = () => {
+export const getStaticProps: GetStaticProps = async () => ({
+  props: {
+    animals: await request<AnimalsQuery>(animalsQuery)
+  }
+});
+
+interface Props {
+  animals: AnimalsQuery;
+}
+
+const Aminals: FC<Props> = ({ animals }) => {
+  const img = (a: Partial<Asset>) => (
+    <div className="w-full">
+      <Img
+        src={a.url!}
+        width={a.width!}
+        height={a.height!}
+      />
+    </div>
+
+  );
+
   return (
-    <Layout>
-      <h1 className="text-center pt-40">Zvířata</h1>
-
+    <Layout title="Zvířata" bg="jk-2">
       <div className="flex flex-col max-w-7xl m-auto mb-16 space-y-32 mt-24 items-center">
-        {[...Array(2)].map(() => (
-          <>
-            <div className="flex bg-white">
-              <img src="/bg.jpg" className="max-w-3xl" />
-              <div className="p-8">
-                <h2 className="pb-4">Flíček</h2>
-                <p>
-                  Předvádět sloupy takového za živin rozhodnutí napadne letních, z stopami padákům sezona obstaral prokázat testům simulovalo z
-                  čímž, pod svému by lokalizovanému textech hry typ odhaduje kolektivu syndrom temna. V o roli valounů lesa evropský oddělující
-                  sledovaných vypálená z žili obličeje. Protein obchodů zasáhla méně čeští živočichů republiky a rozhodli vadit té vidí. Do
-                  kotel války ne i vousech, k šest to pronikání ohňové, mít dá řeky horským Darwin o spustit. V okamžitě letní tj. strašnými
-                  postižením příliš k rozměry s uměle.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex bg-white">
-              <div className="p-8">
-                <h2 className="pb-4">Flíček</h2>
-                <p>
-                  Předvádět sloupy takového za živin rozhodnutí napadne letních, z stopami padákům sezona obstaral prokázat testům simulovalo z
-                  čímž, pod svému by lokalizovanému textech hry typ odhaduje kolektivu syndrom temna. V o roli valounů lesa evropský oddělující
-                  sledovaných vypálená z žili obličeje. Protein obchodů zasáhla méně čeští živočichů republiky a rozhodli vadit té vidí. Do
-                  kotel války ne i vousech, k šest to pronikání ohňové, mít dá řeky horským Darwin o spustit. V okamžitě letní tj. strašnými
-                  postižením příliš k rozměry s uměle.
-                </p>
-              </div>
-              <img src="/bg.jpg" className="max-w-3xl" />
-            </div>
-          </>
-        ))}
+        <CardStrip
+          items={animals.animalCollection.items.map(a => ({
+            title: a.name,
+            text: <Richtext value={a.text.json} />,
+            img: a.img
+          }))}
+        />
 
       </div>
     </Layout>

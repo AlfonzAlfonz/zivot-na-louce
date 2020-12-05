@@ -1,0 +1,13 @@
+overwrite: true
+schema: "https://graphql.contentful.com/content/v1/spaces/idt22mp7qe5g?access_token=tAetZoGEPwDyEu6dBbwTAQD50XcmXn3gCqOTtxY1gxo"
+documents: "data/**/*.ts"
+generates:
+  ./graphql.ts:
+    plugins:
+      - add:
+          content: '/* eslint-disable */'
+      - "typescript"
+      - "typescript-operations" 
+    config:
+        avoidOptionals: true
+        maybeValue: "T"
