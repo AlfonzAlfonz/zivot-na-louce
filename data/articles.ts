@@ -11,7 +11,8 @@ export const homepageArticles = gql`
         img {
           url,
           width,
-          height
+          height,
+          title
         },
         title,
         perex
@@ -21,7 +22,7 @@ export const homepageArticles = gql`
 `;
 
 export const listArticlesQuery = gql`
-query ListArticlesQuery {
+query ListArticles {
   articleCollection(locale: "cs", order: sys_publishedAt_DESC) {
       items {
         sys { 
@@ -31,11 +32,41 @@ query ListArticlesQuery {
         img {
           url,
           width,
-          height
+          height,
+          title
         },
         title,
         perex
       }
     }
 }
+`;
+
+export const articleDetail = gql`
+  query ArticleDetail($id: String!) {
+  article(id: $id, locale: "cs") {
+    sys { publishedAt }
+    title
+    img {
+      url
+      width
+      height
+      title
+    }
+    perex
+    text {
+      json
+    }
+    galleryCollection(locale: "cs") {
+      items {
+        url
+        width
+        height
+        description
+        title
+      }
+    }
+  }
+}
+
 `;

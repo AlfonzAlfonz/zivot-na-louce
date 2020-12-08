@@ -3,9 +3,9 @@ import Layout from "components/Layout";
 import Link from "next/link";
 import CardStrip from "components/CardStrip";
 import { GetStaticProps } from "next";
-import { request } from "../data/index";
-import { listArticlesQuery } from "../data/articles";
-import { ListArticlesQueryQuery } from "../graphql";
+import { request } from "../../data/index";
+import { listArticlesQuery } from "../../data/articles";
+import { ListArticlesQuery } from "../../graphql";
 
 export const getStaticProps: GetStaticProps<Props> = async () => ({
   props: {
@@ -14,7 +14,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => ({
 });
 
 interface Props {
-  articles: ListArticlesQueryQuery;
+  articles: ListArticlesQuery;
 }
 
 const Life: FC<Props> = ({ articles }) => {

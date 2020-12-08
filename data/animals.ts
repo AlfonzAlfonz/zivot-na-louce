@@ -8,7 +8,8 @@ export const animalsQuery = gql`
         img {
           url,
           width,
-          height
+          height,
+          title
         },
         text{
           json
