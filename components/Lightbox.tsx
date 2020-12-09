@@ -48,7 +48,7 @@ const Lightbox: FC<Props> = ({ state, setState, assets }) => {
 export default Lightbox;
 
 export const useLightbox = (assets: Pick<Asset, "url" | "width" | "height" | "title" | "description">[]) => {
-  const [state, setState] = useState<number | null>(1);
+  const [state, setState] = useState<number | null>(null);
   return {
     lightbox: {
       assets,

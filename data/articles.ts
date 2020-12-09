@@ -22,8 +22,8 @@ export const homepageArticles = gql`
 `;
 
 export const listArticlesQuery = gql`
-query ListArticles {
-  articleCollection(locale: "cs", order: sys_publishedAt_DESC) {
+query ListArticles ($limit: Int!, $skip: Int!, $category: String!) {
+  articleCollection(locale: "cs", order: sys_publishedAt_DESC, limit: $limit, skip: $skip, where: { type_contains: $category }) {
       items {
         sys { 
           id
@@ -38,6 +38,7 @@ query ListArticles {
         title,
         perex
       }
+      total
     }
 }
 `;

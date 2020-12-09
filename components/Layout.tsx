@@ -55,7 +55,7 @@ const Layout: FC<Props> = ({ bg, title, children, noSupport }) => {
         className="flex flex-col md:flex-row md:flex-wrap justify-between bottom-0 z-20 text-white bg-gray-900 px-8 md:px-4 py-4 space-y-8 md:space-y-0 md:space-x-8"
       >
         <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8">
-          <div className="flex flex-shrink-0">Život na louce 2020</div>
+          <div className="flex flex-shrink-0">Život na louce {new Date().getFullYear()}</div>
           <div className="flex flex-shrink-0 items-center"><FiInstagram size={22} /> <div className="pl-1">@zivot_na_louce</div></div>
           <div className="flex flex-shrink-0 items-center"><FiTwitter size={22} /> <div className="pl-1">@zivot_na_louce</div></div>
           <div className="flex flex-shrink-0 items-center"><FiFacebook size={22} /> <div className="pl-1">@zivot_na_louce</div></div>

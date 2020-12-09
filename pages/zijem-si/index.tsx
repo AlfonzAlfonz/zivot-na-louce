@@ -1,43 +1,89 @@
-import { FC } from "react";
-import Layout from "components/Layout";
-import Link from "next/link";
 import CardStrip from "components/CardStrip";
-import { GetStaticProps } from "next";
-import { request } from "../../data/index";
-import { listArticlesQuery } from "../../data/articles";
-import { ListArticlesQuery } from "../../graphql";
+import Layout from "components/Layout";
+import { request } from "data";
+import { listArticlesQuery } from "data/articles";
+import { GetServerSideProps } from "next";
+import Link from "next/link";
+import { FC } from "react";
+import getSlug from "speakingurl";
+import { parse } from "url";
+import { only } from "utils/only";
 
-export const getStaticProps: GetStaticProps<Props> = async () => ({
-  props: {
-    articles: await request(listArticlesQuery)
-  }
-});
+import { ListArticlesQuery } from "../../graphql";
 
 interface Props {
   articles: ListArticlesQuery;
+  page: number;
 }
 
-const Life: FC<Props> = ({ articles }) => {
+const PER_PAGE = 10;
+
+export const getServerSideProps: GetServerSideProps<Props> = async ({ req }) => {
+  const { query } = parse(req.url!, true);
+
+  const articles = await request<ListArticlesQuery>(
+    listArticlesQuery,
+    // { limit: PER_PAGE, skip: (Number(only(query.page) ?? 1) - 1) * PER_PAGE }
+    { limit: 1000, skip: 0, category: query.ctg ?? "" }
+  );
+
+  return {
+    props: {
+      articles: articles,
+      page: Number(only(query.page) ?? 1)
+    }
+  };
+};
+
+const Life: FC<Props> = ({ articles, page }) => {
+  const btn = (n: number, active: boolean = false) =>
+    <div className={`py-3 px-4 bg-white${active ? " font-bold" : ""}`}>{n}</div>;
+
+  const lastPage = Math.floor(articles.articleCollection.total / PER_PAGE);
+
   return (
     <Layout title="Žijem si" bg="jk-35">
       <div className="flex flex-col max-w-7xl m-auto space-y-16 mt-24 items-center">
         <div className="flex flex-col sm:flex-row w-full shadow-xl sm:shadow-none sm:space-x-8 justify-center">
           <Link href=""><a className="bg-white p-4 sm:max-w-xs w-full">Všechno</a></Link>
-          <Link href="?ctg=clanky"><a className="bg-white p-4 sm:max-w-xs w-full">Články</a></Link>
+          <Link href="?ctg=clanek"><a className="bg-white p-4 sm:max-w-xs w-full">Články</a></Link>
           <Link href="?ctg=akce"><a className="bg-white p-4 sm:max-w-xs w-full">Akce</a></Link>
-          <Link href="?ctg=recepty"><a className="bg-white p-4 sm:max-w-xs w-full">Recepty</a></Link>
+          <Link href="?ctg=recept"><a className="bg-white p-4 sm:max-w-xs w-full">Recepty</a></Link>
         </div>
 
         <div className="space-y-16">
-          <CardStrip
-            noPadding
-            items={articles.articleCollection.items.map((a, i) => ({
-              title: a.title,
-              img: a.img,
-              text: a.perex
-            }))}
-          />
+          {articles.articleCollection.items.length ? (
+            <CardStrip
+              noPadding
+              items={articles.articleCollection.items.map((a, i) => ({
+                title: a.title,
+                img: a.img,
+                text: a.perex,
+                link: `/zijem-si/${a.sys.id}/${getSlug(a.title)}`
+              }))}
+            />
+          ) : <div className="text-white font-bold text-2xl pt-4">Zatím žádné články</div>}
         </div>
+        {/* <div className="flex items-center">
+          <div>
+            {page > 3 && btn(1)}
+
+            {page > 3 &&
+              <FiMoreHorizontal />}
+
+            {page > 1 && btn(page - 2)}
+            {page > 1 && btn(page - 1)}
+            {btn(page, true)}
+            {page < lastPage && btn(page + 1)}
+            {page < lastPage - 1 && btn(page + 2)}
+
+            {page < lastPage - 3 &&
+              <FiMoreHorizontal />}
+
+            {page < lastPage - 3 &&
+              btn(lastPage)}
+          </div>
+        </div> */}
       </div>
     </Layout>
   );
