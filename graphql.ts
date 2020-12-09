@@ -1360,6 +1360,30 @@ export type ArticleDetailQuery = (
   )> }
 );
 
+export type ListBuildingsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ListBuildingsQuery = (
+  { __typename?: 'Query' }
+  & { buildingCollection: Maybe<(
+    { __typename?: 'BuildingCollection' }
+    & { items: Array<Maybe<(
+      { __typename?: 'Building' }
+      & Pick<Building, 'name'>
+      & { sys: (
+        { __typename?: 'Sys' }
+        & Pick<Sys, 'id'>
+      ), img: Maybe<(
+        { __typename?: 'Asset' }
+        & Pick<Asset, 'url' | 'width' | 'height' | 'title'>
+      )>, text: Maybe<(
+        { __typename?: 'BuildingText' }
+        & Pick<BuildingText, 'json'>
+      )> }
+    )>> }
+  )> }
+);
+
 export type HomepageQueryVariables = Exact<{ [key: string]: never; }>;
 
 

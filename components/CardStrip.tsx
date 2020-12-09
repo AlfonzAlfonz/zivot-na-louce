@@ -13,26 +13,28 @@ interface Props {
 interface Content {
   title: ReactNode;
   text: ReactNode;
-  img: Partial<Asset>;
+  img?: Partial<Asset>;
   link?: string;
 }
 
 const CardStrip: FC<Props> = ({ items, noPadding }) => {
   const card = (itm: Content, i: number) => (
-    <div key={i} className={!noPadding ? `${i % 2 ? "md:pl-16" : "md:pr-16"}` : undefined}>
+    <div key={i} className={`w-full ${!noPadding ? `${i % 2 ? "md:pl-16" : "md:pr-16"}` : ""}`}>
       <Card
         title={itm.title as any}
         left={(
-          <div className={`-mb-2 ${i % 2 ? "md:order-first" : "md:order-last"}`}>
-            <Img
-              src={itm.img.url!}
-              width={itm.img.width! / itm.img.height! * 448}
-              height={448}
-            />
-          </div>
+          itm.img && (
+            <div className={`-mb-2 ${i % 2 ? "md:order-first" : "md:order-last"}`}>
+              <Img
+                src={itm.img.url!}
+                width={itm.img.width! / itm.img.height! * 448}
+                height={448}
+              />
+            </div>
+          )
         )}
-        _body="md:w-2/3"
-        className="h-full overflow-hidden"
+        _body={itm.img ? "md:w-2/3" : "md:w-full"}
+        className="w-full h-full overflow-hidden"
       >
         {itm.text}
       </Card>
@@ -40,7 +42,7 @@ const CardStrip: FC<Props> = ({ items, noPadding }) => {
   );
 
   return (
-    <div className="space-y-16">
+    <div className="w-full space-y-16">
       {items.map((itm, i) => itm.link
         ? <Link href={itm.link}><a className="block">{card(itm, i)}</a></Link>
         : card(itm, i)

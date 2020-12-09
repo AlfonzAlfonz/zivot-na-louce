@@ -41,7 +41,8 @@ const Index: FC<HomepageQuery & HomepageArticlesQuery> = ({ homepage, articleCol
         </p>
         <a className="btn mb-24">E-shop</a>
       </div>
-      <Card className="text-center justify-center" _body="w-full xl:max-w-6 2xl:max-w-7xl">
+      <Card className="text-center justify-center" _body="w-full xl:max-w-6 2xl:max-w-7xl m-auto">
+
         <h2 className="text-4xl">{homepage.whoWeAreTitle}</h2>
 
         <Richtext value={homepage.whoWeAreText} />
@@ -53,6 +54,7 @@ const Index: FC<HomepageQuery & HomepageArticlesQuery> = ({ homepage, articleCol
             </div>
           ))}
         </div>
+
       </Card>
 
       <div ref={lifeRef as any} className="py-32 md:px-20 min-h-screen">

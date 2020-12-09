@@ -25,10 +25,14 @@ const Layout: FC<Props> = ({ bg, title, children, noSupport }) => {
       </Head>
 
       <div className="fixed w-full text-white flex justify-between h-24 items-center px-2 sm:px-8 bg-gray-900 bg-opacity-80 z-20 shadow-lg">
-        <div className="flex items-center space-x-4 text-2xl">
-          <img className="w-16 rounded-full" src="/logo.jpg" />
-          <Link href="/"><a>Život na louce</a></Link>
-        </div>
+        <Link href="/">
+          <a>
+            <div className="flex items-center space-x-4 text-2xl">
+              <img className="w-16 rounded-full" src="/logo.jpg" />
+              <span>Život na louce</span>
+            </div>
+          </a>
+        </Link>
         <Menu />
       </div>
       {title && <h1 className="text-center pt-40 text-white">{title}</h1>}
