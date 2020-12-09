@@ -70,15 +70,6 @@ body {
 @tailwind utilities;
 /* Stop purging. */
 
-.hero-img {
-  background: url("/bg.jpg");
-}
-
-.section-img {
-  background: url("/bg.jpg");
-  background-attachment: fixed;
-}
-
 .hero {
   background-size: cover;
   background-position-y: bottom 0;

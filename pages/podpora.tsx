@@ -19,11 +19,11 @@ const Support: FC = () => {
             items={[...Array(4)].map((_, i) => ({
               title: "Lorem ipsum",
               img: {
-                url: "/bg.jpg",
+                url: "/img/JK-1.jpg",
                 width: 1024,
-                height: 1024
+                height: 540
               },
-              text: <Richtext value={{ nodeType: BLOCKS.DOCUMENT, content: [], data: {} }} />
+              text: ""
             }))}
           />
 
