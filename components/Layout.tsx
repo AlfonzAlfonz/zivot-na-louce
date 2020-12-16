@@ -1,34 +1,45 @@
+import { Document } from "@contentful/rich-text-types";
 import Head from "next/head";
 import Link from "next/link";
-import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
+import React, { FC, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { FiFacebook, FiInstagram, FiMenu, FiTwitter, FiX } from "react-icons/fi";
 
 import { Background, useBackground, useElementBackground } from "./Background";
 import Card from "./Card";
+import { documentToText } from "./Richtext";
 
 interface Props {
   title?: string;
+  description?: string | Document;
   noSupport?: boolean;
   bg: Background;
 }
 
-const Layout: FC<Props> = ({ bg, title, children, noSupport }) => {
+const Layout: FC<Props> = ({ bg, title, description, children, noSupport }) => {
   const [push] = useBackground();
   useEffect(() => void push(bg), [bg, push]);
 
   const supportRef = useElementBackground("jk-16");
 
+  const metaDesc = useMemo(() => typeof description !== "object" ? description : documentToText(description), [description]);
+
   return (
     <>
       <Head>
         <title>{title ? `${title} | Život na louce` : "Život na louce"}</title>
+        {description && (
+          <meta
+            name="description"
+            content={metaDesc}
+          />
+        )}
       </Head>
 
       <div className="fixed w-full text-white flex justify-between h-24 items-center px-2 sm:px-8 bg-gray-900 bg-opacity-80 z-20 shadow-lg">
         <Link href="/">
           <a>
             <div className="flex items-center space-x-4 text-2xl">
-              <img className="w-16 rounded-full" src="/logo.jpg" />
+              <img className="w-16 rounded-full" src="/logo.jpg" alt="Logo" />
               <span>Život na louce</span>
             </div>
           </a>

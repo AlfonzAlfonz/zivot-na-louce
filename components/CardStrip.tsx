@@ -28,6 +28,7 @@ const CardStrip: FC<Props> = ({ items, noPadding }) => {
               <Img
                 src={itm.img.url!}
                 width={itm.img.width! / itm.img.height! * 448}
+                alt={itm.img.title}
                 height={448}
               />
             </div>

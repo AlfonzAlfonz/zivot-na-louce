@@ -3,7 +3,7 @@ import CardStrip from "components/CardStrip";
 import Layout from "components/Layout";
 import Richtext from "components/Richtext";
 import { GetStaticProps } from "next";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
 import { useElementBackground } from "../components/Background";
 import { request } from "../data";
@@ -13,6 +13,7 @@ import { HomepageArticlesQuery, HomepageQuery } from "../graphql";
 import Img from "next/image";
 import getSlug from "speakingurl";
 import Lightbox, { useLightbox } from "../components/Lightbox";
+import { documentToText } from "../components/Richtext";
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -30,7 +31,7 @@ const Index: FC<HomepageQuery & HomepageArticlesQuery> = ({ homepage, articleCol
   const { lightbox, setState } = useLightbox(homepage.fotkyCollection.items);
 
   return (
-    <Layout bg="jk-35">
+    <Layout bg="jk-35" description={homepage.whoWeAreText.json}>
       <div
         ref={introRef as any}
         className="min-h-screen 2xl:max-w-7xl m-auto flex flex-col xl:justify-center items-start hero px-8 md:px-16 2xl:px-0 pt-32 text-white"
@@ -39,7 +40,7 @@ const Index: FC<HomepageQuery & HomepageArticlesQuery> = ({ homepage, articleCol
         <p className="max-w-3xl pb-8">
           {homepage.text}
         </p>
-        <a className="btn mb-24">E-shop</a>
+        <span className="btn mb-24">E-shop</span>
       </div>
 
       <Card className="text-center justify-center" _body="w-full xl:max-w-6 2xl:max-w-7xl m-auto">
@@ -50,7 +51,7 @@ const Index: FC<HomepageQuery & HomepageArticlesQuery> = ({ homepage, articleCol
         <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 mt-8 justify-center z-10 relative">
           {homepage.fotkyCollection.items.map((p, i) => (
             <div key={i} onClick={() => setState(i)} className="cursor-pointer">
-              <Img src={p.url} className="shadow-2xl" width={p.width / p.height * 256} height={256} />
+              <Img src={p.url} alt={p.title} className="shadow-2xl" width={p.width / p.height * 256} height={256} />
             </div>
           ))}
         </div>

@@ -8,11 +8,11 @@ class MyDocument extends Document {
 
   render () {
     return (
-      <Html>
+      <Html lang="cs">
         <Head>
           <meta
             name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover"
+            content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no, viewport-fit=cover"
           />
 
           <link rel="preconnect" href="https://fonts.gstatic.com" />

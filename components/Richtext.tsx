@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { documentToReactComponents, Options } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, Document } from "@contentful/rich-text-types";
+import { Block, BLOCKS, Document, Inline, Text } from "@contentful/rich-text-types";
 
 interface Props {
   value: Document | { json: Document } | null;
@@ -27,3 +27,8 @@ const options: Options = {
     [BLOCKS.HEADING_2]: (_, children) => <h2 className="mt-6">{children}</h2>
   }
 };
+
+export const documentToText = (doc: Block | Document) => nodeToText(doc.content);
+
+const nodeToText = (nodes: (Inline | Block | Text)[]): string =>
+  nodes.map(n => n.nodeType === "text" ? n.value : nodeToText(n.content)).join("");

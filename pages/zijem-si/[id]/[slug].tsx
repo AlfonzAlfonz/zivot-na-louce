@@ -1,8 +1,8 @@
 import Layout from "components/Layout";
-import Richtext from "components/Richtext";
+import Richtext, { documentToText } from "components/Richtext";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import getSlug from "speakingurl";
 import { only } from "utils/only";
 
@@ -38,8 +38,9 @@ const Life: FC<ArticleDetailQuery | { status: 404 }> = (props) => {
     return <p>404</p>;
   }
   const { article } = props;
+
   return (
-    <Layout bg="jk-35">
+    <Layout bg="jk-35" description={article.text.json}>
       <div className="max-w-7xl m-auto pt-40">
         <div className="relative">
           <h1 className="text-center text-white">{article.title}</h1>
@@ -62,6 +63,7 @@ const Life: FC<ArticleDetailQuery | { status: 404 }> = (props) => {
               <div key={i}>
                 <Img
                   src={img.url}
+                  alt={img.title}
                   width={img.width / img.height * 310}
                   height={310}
                   className="shadow-2xl cursor-pointer"

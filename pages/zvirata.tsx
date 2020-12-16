@@ -25,6 +25,7 @@ const Aminals: FC<Props> = ({ animals }) => {
     <div className="w-full">
       <Img
         src={a.url!}
+        alt={a.title}
         width={a.width!}
         height={a.height!}
       />
@@ -33,7 +34,7 @@ const Aminals: FC<Props> = ({ animals }) => {
   );
 
   return (
-    <Layout title="Zvířata" bg="jk-2">
+    <Layout title="Zvířata" bg="jk-2" description={animals.animalCollection.items[0]?.text.json}>
       <div className="flex flex-col max-w-7xl m-auto mb-16 space-y-32 mt-24 items-center">
         <CardStrip
           items={animals.animalCollection.items.map(a => ({

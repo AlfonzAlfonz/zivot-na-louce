@@ -19,7 +19,7 @@ const Lightbox: FC<Props> = ({ state, setState, assets }) => {
           <div className="bg-black bg-opacity-80 fixed top-0 left-0 right-0 bottom-0" />
 
           <div className="m-auto h-full relative">
-            <img src={img.url} className="max-h-full shadow-2xl" />
+            <img src={img.url} className="max-h-full shadow-2xl" alt={img.title} />
             <FiX className="absolute text-white m-4 cursor-pointer top-0 right-0" size={32} onClick={() => setState(null)} />
             {state !== 0 && (
               <FiArrowLeft

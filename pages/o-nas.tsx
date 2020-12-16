@@ -9,7 +9,7 @@ import { request } from "../data";
 import { aboutUsQuery } from "../data/aboutUs";
 import { AboutUsQuery } from "../graphql";
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
+export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       ...await request<AboutUsQuery>(aboutUsQuery)
@@ -19,7 +19,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
 const AboutUs: FC<AboutUsQuery> = ({ aboutUs }) => {
   return (
-    <Layout title={aboutUs.title} bg="jk-2">
+    <Layout title={aboutUs.title} bg="jk-2" description={aboutUs.whoWeAreText.json}>
 
       <div className="flex flex-col max-w-7xl m-auto space-y-32 mt-24 items-center">
         <Card title={aboutUs.whoWeAre} className="items-center text-center">
