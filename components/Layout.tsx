@@ -2,7 +2,7 @@ import { Document } from "@contentful/rich-text-types";
 import Head from "next/head";
 import Link from "next/link";
 import React, { FC, ReactNode, useEffect, useMemo, useRef, useState } from "react";
-import { FiFacebook, FiInstagram, FiMenu, FiTwitter, FiX } from "react-icons/fi";
+import { FiChevronDown, FiFacebook, FiInstagram, FiMenu, FiTwitter, FiX } from "react-icons/fi";
 
 import { Background, useBackground, useElementBackground } from "./Background";
 import Card from "./Card";
@@ -93,12 +93,28 @@ export default Layout;
 
 const Menu: FC = () => {
   const [state, setState] = useState(false);
+  const [animals, setAnimals] = useState(false);
   return (
     <>
-      <ul className="hidden md:flex h-24 items-center">
+      <ul className="hidden md:flex h-24">
         <li {...liStyle}><Link href="/"><a>Úvod</a></Link></li>
         <li {...liStyle}><Link href="/o-nas"><a>O nás</a></Link></li>
-        <li {...liStyle}><Link href="/zvirata"><a>Zvířata</a></Link></li>
+        <li {...liStyle} onMouseEnter={() => setAnimals(true)} onMouseLeave={() => setAnimals(false)}>
+          <Link href="/zvirata"><a>Zvířata <FiChevronDown size={16} className="inline-block" /></a></Link>
+          <ul
+            className={`${animals ? "opacity-100" : "opacity-0 pointer-events-none"} transition-all absolute bg-white text-black min-w-max top-16 right-0`}
+          >
+            <li className="hover:bg-gray-900 hover:bg-opacity-20">
+              <Link href="/zvirata/adopce"><a className="p-3 pr-5 block">Virtuální adopce</a></Link>
+            </li>
+            <li className="hover:bg-gray-900 hover:bg-opacity-20">
+              <Link href="/zvirata/foto-video"><a className="p-3 pr-5 block">Foto / Video</a></Link>
+            </li>
+            <li className="hover:bg-gray-900 hover:bg-opacity-20">
+              <Link href="/zvirata/opustili-nas"><a className="p-3 pr-5 block">Opustili nás</a></Link>
+            </li>
+          </ul>
+        </li>
         <li {...liStyle}><Link href="/zijem-si"><a>Žijem si</a></Link></li>
         <li {...liStyle}><Link href="/stavime-si"><a>Stavíme si</a></Link></li>
         <li {...liStyle}><Link href="/podpora"><a>Podpora</a></Link></li>
@@ -126,5 +142,5 @@ const Menu: FC = () => {
   );
 };
 
-const liStyle = { className: "px-3" };
+const liStyle = { className: "px-3 relative h-full flex items-center" };
 const liBurgerStyle = { className: "p-5" };

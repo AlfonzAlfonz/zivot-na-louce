@@ -83,3 +83,13 @@ body {
 .dyn-ratio {
   aspect-ratio: attr(width) / attr(height);
 }
+
+@keyframes load {
+  0% { width: 0; }
+  100% { width: 60%; }
+}
+
+@keyframes loadFull {
+  0% { width: 80%; }
+  100% { width: 100%; display: none }
+}

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
-import { FC } from "react";
+import { FC, useState } from "react";
 import Layout from "components/Layout";
 import Card from "components/Card";
 import { GetStaticProps } from "next";
-import { request } from "../data/index";
-import { animalsQuery } from "../data/animals";
-import { AnimalsQuery, Asset, SupportQuery } from "../graphql";
+import { request } from "../../data/index";
+import { animalsQuery } from "../../data/animals";
+import { AnimalsQuery, Asset, SupportQuery } from "../../graphql";
 import Richtext from "components/Richtext";
 import Img from "next/image";
 import CardStrip from "components/CardStrip";
@@ -32,7 +32,6 @@ const Aminals: FC<Props & SupportQuery> = ({ animals, support }) => {
         height={a.height!}
       />
     </div>
-
   );
 
   return (
@@ -41,7 +40,7 @@ const Aminals: FC<Props & SupportQuery> = ({ animals, support }) => {
         <CardStrip
           items={animals.animalCollection.items.map(a => ({
             title: a.name,
-            text: <Richtext value={a.text.json} />,
+            text: <CardBody animal={a} />,
             img: a.img
           }))}
         />
@@ -52,3 +51,21 @@ const Aminals: FC<Props & SupportQuery> = ({ animals, support }) => {
 };
 
 export default Aminals;
+
+export const CardBody: FC<{ animal: AnimalsQuery["animalCollection"]["items"][number] }> = ({ animal }) => {
+  const [state, setState] = useState(false);
+  return (
+    <>
+      <div className={state ? undefined : "h-full"}>
+        <Richtext value={animal.perex.json} />
+
+      </div>
+      {!state && animal.text?.json && (
+        <div>
+          <div className="btn mt-4" onClick={() => setState(true)}>Ukázat víc</div>
+        </div>
+      )}
+      {state && <Richtext value={animal.text.json} />}
+    </>
+  );
+};

@@ -24,17 +24,17 @@ const AboutUs: FC<AboutUsQuery & SupportQuery> = ({ aboutUs, support }) => {
     <Layout title={aboutUs.title} bg="jk-2" description={aboutUs.whoWeAreText.json} support={support}>
 
       <div className="flex flex-col max-w-7xl m-auto space-y-32 mt-24 items-center">
-        <Card title={aboutUs.whoWeAre} className="items-center text-center">
+        <Card title={aboutUs.whoWeAre} className="items-center">
           <Richtext value={aboutUs.whoWeAreText} />
         </Card>
 
-        <Card title={aboutUs.vision} className="items-center text-center">
+        <Card title={aboutUs.vision} className="items-center">
           <Richtext value={aboutUs.visionText} />
         </Card>
-
-        <Card title={aboutUs.project} className="items-center text-center">
+        {/*
+        <Card title={aboutUs.project} className="items-center">
           <Richtext value={aboutUs.projectText} />
-        </Card>
+        </Card> */}
       </div>
 
       <div className="mt-24 mb-24 py-16 bg-white">

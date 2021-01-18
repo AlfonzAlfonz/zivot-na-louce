@@ -31,6 +31,10 @@ export type Query = {
   __typename?: 'Query';
   asset: Maybe<Asset>;
   assetCollection: Maybe<AssetCollection>;
+  animals: Maybe<Animals>;
+  animalsCollection: Maybe<AnimalsCollection>;
+  animal: Maybe<Animal>;
+  animalCollection: Maybe<AnimalCollection>;
   support: Maybe<Support>;
   supportCollection: Maybe<SupportCollection>;
   homepage: Maybe<Homepage>;
@@ -41,8 +45,6 @@ export type Query = {
   aboutUsCollection: Maybe<AboutUsCollection>;
   building: Maybe<Building>;
   buildingCollection: Maybe<BuildingCollection>;
-  animal: Maybe<Animal>;
-  animalCollection: Maybe<AnimalCollection>;
 };
 
 
@@ -60,6 +62,40 @@ export type QueryAssetCollectionArgs = {
   locale: Maybe<Scalars['String']>;
   where: Maybe<AssetFilter>;
   order: Maybe<Array<Maybe<AssetOrder>>>;
+};
+
+
+export type QueryAnimalsArgs = {
+  id: Scalars['String'];
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+export type QueryAnimalsCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+  where: Maybe<AnimalsFilter>;
+  order: Maybe<Array<Maybe<AnimalsOrder>>>;
+};
+
+
+export type QueryAnimalArgs = {
+  id: Scalars['String'];
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+export type QueryAnimalCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+  where: Maybe<AnimalFilter>;
+  order: Maybe<Array<Maybe<AnimalOrder>>>;
 };
 
 
@@ -145,23 +181,6 @@ export type QueryBuildingCollectionArgs = {
   locale: Maybe<Scalars['String']>;
   where: Maybe<BuildingFilter>;
   order: Maybe<Array<Maybe<BuildingOrder>>>;
-};
-
-
-export type QueryAnimalArgs = {
-  id: Scalars['String'];
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-export type QueryAnimalCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-  where: Maybe<AnimalFilter>;
-  order: Maybe<Array<Maybe<AnimalOrder>>>;
 };
 
 /** Represents a binary file in a space. An asset can be any file type. */
@@ -302,14 +321,31 @@ export enum ImageFormat {
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection: Maybe<EntryCollection>;
+  animalsCollection: Maybe<AnimalsCollection>;
+  animalCollection: Maybe<AnimalCollection>;
   homepageCollection: Maybe<HomepageCollection>;
   articleCollection: Maybe<ArticleCollection>;
   buildingCollection: Maybe<BuildingCollection>;
-  animalCollection: Maybe<AnimalCollection>;
 };
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+export type AssetLinkingCollectionsAnimalsCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+export type AssetLinkingCollectionsAnimalCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview: Maybe<Scalars['Boolean']>;
@@ -340,14 +376,6 @@ export type AssetLinkingCollectionsBuildingCollectionArgs = {
   locale: Maybe<Scalars['String']>;
 };
 
-
-export type AssetLinkingCollectionsAnimalCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-};
-
 export type EntryCollection = {
   __typename?: 'EntryCollection';
   total: Scalars['Int'];
@@ -358,6 +386,186 @@ export type EntryCollection = {
 
 export type Entry = {
   sys: Sys;
+};
+
+export type AnimalsCollection = {
+  __typename?: 'AnimalsCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Animals>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animals) */
+export type Animals = Entry & {
+  __typename?: 'Animals';
+  sys: Sys;
+  linkedFrom: Maybe<AnimalsLinkingCollections>;
+  photosCollection: Maybe<AssetCollection>;
+  videos: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animals) */
+export type AnimalsLinkedFromArgs = {
+  allowedLocales: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animals) */
+export type AnimalsPhotosCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animals) */
+export type AnimalsVideosArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+export type AnimalsLinkingCollections = {
+  __typename?: 'AnimalsLinkingCollections';
+  entryCollection: Maybe<EntryCollection>;
+};
+
+
+export type AnimalsLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+export type AssetCollection = {
+  __typename?: 'AssetCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Asset>>;
+};
+
+export type AnimalCollection = {
+  __typename?: 'AnimalCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Animal>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animal) */
+export type Animal = Entry & {
+  __typename?: 'Animal';
+  sys: Sys;
+  linkedFrom: Maybe<AnimalLinkingCollections>;
+  img: Maybe<Asset>;
+  name: Maybe<Scalars['String']>;
+  perex: Maybe<AnimalPerex>;
+  text: Maybe<AnimalText>;
+  gone: Maybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animal) */
+export type AnimalLinkedFromArgs = {
+  allowedLocales: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animal) */
+export type AnimalImgArgs = {
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animal) */
+export type AnimalNameArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animal) */
+export type AnimalPerexArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animal) */
+export type AnimalTextArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animal) */
+export type AnimalGoneArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+export type AnimalLinkingCollections = {
+  __typename?: 'AnimalLinkingCollections';
+  entryCollection: Maybe<EntryCollection>;
+};
+
+
+export type AnimalLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+export type AnimalPerex = {
+  __typename?: 'AnimalPerex';
+  json: Scalars['JSON'];
+  links: AnimalPerexLinks;
+};
+
+
+export type AnimalPerexLinks = {
+  __typename?: 'AnimalPerexLinks';
+  entries: AnimalPerexEntries;
+  assets: AnimalPerexAssets;
+};
+
+export type AnimalPerexEntries = {
+  __typename?: 'AnimalPerexEntries';
+  inline: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  block: Array<Maybe<Entry>>;
+};
+
+export type AnimalPerexAssets = {
+  __typename?: 'AnimalPerexAssets';
+  hyperlink: Array<Maybe<Asset>>;
+  block: Array<Maybe<Asset>>;
+};
+
+export type AnimalText = {
+  __typename?: 'AnimalText';
+  json: Scalars['JSON'];
+  links: AnimalTextLinks;
+};
+
+export type AnimalTextLinks = {
+  __typename?: 'AnimalTextLinks';
+  entries: AnimalTextEntries;
+  assets: AnimalTextAssets;
+};
+
+export type AnimalTextEntries = {
+  __typename?: 'AnimalTextEntries';
+  inline: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  block: Array<Maybe<Entry>>;
+};
+
+export type AnimalTextAssets = {
+  __typename?: 'AnimalTextAssets';
+  hyperlink: Array<Maybe<Asset>>;
+  block: Array<Maybe<Asset>>;
 };
 
 export type HomepageCollection = {
@@ -438,7 +646,6 @@ export type HomepageWhoWeAreText = {
   links: HomepageWhoWeAreTextLinks;
 };
 
-
 export type HomepageWhoWeAreTextLinks = {
   __typename?: 'HomepageWhoWeAreTextLinks';
   entries: HomepageWhoWeAreTextEntries;
@@ -456,14 +663,6 @@ export type HomepageWhoWeAreTextAssets = {
   __typename?: 'HomepageWhoWeAreTextAssets';
   hyperlink: Array<Maybe<Asset>>;
   block: Array<Maybe<Asset>>;
-};
-
-export type AssetCollection = {
-  __typename?: 'AssetCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Asset>>;
 };
 
 export type ArticleCollection = {
@@ -652,87 +851,6 @@ export type BuildingTextAssets = {
   block: Array<Maybe<Asset>>;
 };
 
-export type AnimalCollection = {
-  __typename?: 'AnimalCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Animal>>;
-};
-
-/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animal) */
-export type Animal = Entry & {
-  __typename?: 'Animal';
-  sys: Sys;
-  linkedFrom: Maybe<AnimalLinkingCollections>;
-  img: Maybe<Asset>;
-  name: Maybe<Scalars['String']>;
-  text: Maybe<AnimalText>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animal) */
-export type AnimalLinkedFromArgs = {
-  allowedLocales: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animal) */
-export type AnimalImgArgs = {
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animal) */
-export type AnimalNameArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/animal) */
-export type AnimalTextArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-export type AnimalLinkingCollections = {
-  __typename?: 'AnimalLinkingCollections';
-  entryCollection: Maybe<EntryCollection>;
-};
-
-
-export type AnimalLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-export type AnimalText = {
-  __typename?: 'AnimalText';
-  json: Scalars['JSON'];
-  links: AnimalTextLinks;
-};
-
-export type AnimalTextLinks = {
-  __typename?: 'AnimalTextLinks';
-  entries: AnimalTextEntries;
-  assets: AnimalTextAssets;
-};
-
-export type AnimalTextEntries = {
-  __typename?: 'AnimalTextEntries';
-  inline: Array<Maybe<Entry>>;
-  hyperlink: Array<Maybe<Entry>>;
-  block: Array<Maybe<Entry>>;
-};
-
-export type AnimalTextAssets = {
-  __typename?: 'AnimalTextAssets';
-  hyperlink: Array<Maybe<Asset>>;
-  block: Array<Maybe<Asset>>;
-};
-
 export type AssetFilter = {
   sys: Maybe<SysFilter>;
   title_exists: Maybe<Scalars['Boolean']>;
@@ -845,6 +963,60 @@ export enum AssetOrder {
   WidthDesc = 'width_DESC',
   HeightAsc = 'height_ASC',
   HeightDesc = 'height_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type AnimalsFilter = {
+  sys: Maybe<SysFilter>;
+  photosCollection_exists: Maybe<Scalars['Boolean']>;
+  videos_exists: Maybe<Scalars['Boolean']>;
+  videos_contains_all: Maybe<Array<Maybe<Scalars['String']>>>;
+  videos_contains_some: Maybe<Array<Maybe<Scalars['String']>>>;
+  videos_contains_none: Maybe<Array<Maybe<Scalars['String']>>>;
+  OR: Maybe<Array<Maybe<AnimalsFilter>>>;
+  AND: Maybe<Array<Maybe<AnimalsFilter>>>;
+};
+
+export enum AnimalsOrder {
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type AnimalFilter = {
+  sys: Maybe<SysFilter>;
+  img_exists: Maybe<Scalars['Boolean']>;
+  name_exists: Maybe<Scalars['Boolean']>;
+  name: Maybe<Scalars['String']>;
+  name_not: Maybe<Scalars['String']>;
+  name_in: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_contains: Maybe<Scalars['String']>;
+  name_not_contains: Maybe<Scalars['String']>;
+  gone_exists: Maybe<Scalars['Boolean']>;
+  gone: Maybe<Scalars['Boolean']>;
+  gone_not: Maybe<Scalars['Boolean']>;
+  OR: Maybe<Array<Maybe<AnimalFilter>>>;
+  AND: Maybe<Array<Maybe<AnimalFilter>>>;
+};
+
+export enum AnimalOrder {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  GoneAsc = 'gone_ASC',
+  GoneDesc = 'gone_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
@@ -1419,33 +1591,6 @@ export enum BuildingOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
-export type AnimalFilter = {
-  sys: Maybe<SysFilter>;
-  img_exists: Maybe<Scalars['Boolean']>;
-  name_exists: Maybe<Scalars['Boolean']>;
-  name: Maybe<Scalars['String']>;
-  name_not: Maybe<Scalars['String']>;
-  name_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  name_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  name_contains: Maybe<Scalars['String']>;
-  name_not_contains: Maybe<Scalars['String']>;
-  OR: Maybe<Array<Maybe<AnimalFilter>>>;
-  AND: Maybe<Array<Maybe<AnimalFilter>>>;
-};
-
-export enum AnimalOrder {
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
 export type AboutUsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1486,11 +1631,58 @@ export type AnimalsQuery = (
       ), img: Maybe<(
         { __typename?: 'Asset' }
         & Pick<Asset, 'url' | 'width' | 'height' | 'title'>
+      )>, perex: Maybe<(
+        { __typename?: 'AnimalPerex' }
+        & Pick<AnimalPerex, 'json'>
       )>, text: Maybe<(
         { __typename?: 'AnimalText' }
         & Pick<AnimalText, 'json'>
       )> }
     )>> }
+  )> }
+);
+
+export type AnimalsRipQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AnimalsRipQuery = (
+  { __typename?: 'Query' }
+  & { animalCollection: Maybe<(
+    { __typename?: 'AnimalCollection' }
+    & { items: Array<Maybe<(
+      { __typename?: 'Animal' }
+      & Pick<Animal, 'name'>
+      & { sys: (
+        { __typename?: 'Sys' }
+        & Pick<Sys, 'id'>
+      ), img: Maybe<(
+        { __typename?: 'Asset' }
+        & Pick<Asset, 'url' | 'width' | 'height' | 'title'>
+      )>, perex: Maybe<(
+        { __typename?: 'AnimalPerex' }
+        & Pick<AnimalPerex, 'json'>
+      )>, text: Maybe<(
+        { __typename?: 'AnimalText' }
+        & Pick<AnimalText, 'json'>
+      )> }
+    )>> }
+  )> }
+);
+
+export type AnimalsInfoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AnimalsInfoQuery = (
+  { __typename?: 'Query' }
+  & { animals: Maybe<(
+    { __typename?: 'Animals' }
+    & { photosCollection: Maybe<(
+      { __typename?: 'AssetCollection' }
+      & { items: Array<Maybe<(
+        { __typename?: 'Asset' }
+        & ImageFragmentFragment
+      )>> }
+    )> }
   )> }
 );
 
@@ -1613,6 +1805,11 @@ export type HomepageQuery = (
       )>> }
     )> }
   )> }
+);
+
+export type ImageFragmentFragment = (
+  { __typename?: 'Asset' }
+  & Pick<Asset, 'url' | 'width' | 'height' | 'description' | 'title'>
 );
 
 export type SupportQueryVariables = Exact<{ [key: string]: never; }>;

@@ -9,3 +9,5 @@ Webové stránky pro projekt Život na Louce. Web je postavený na technologiíc
 - Vyplnit stránku Podpora 
   - co tam přesně chtějí? 
   - přidat sekci podpořili nás?
+- Obrázky v pozadí
+- Link na youtube?
