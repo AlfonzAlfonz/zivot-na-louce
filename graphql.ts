@@ -31,6 +31,8 @@ export type Query = {
   __typename?: 'Query';
   asset: Maybe<Asset>;
   assetCollection: Maybe<AssetCollection>;
+  support: Maybe<Support>;
+  supportCollection: Maybe<SupportCollection>;
   homepage: Maybe<Homepage>;
   homepageCollection: Maybe<HomepageCollection>;
   article: Maybe<Article>;
@@ -58,6 +60,23 @@ export type QueryAssetCollectionArgs = {
   locale: Maybe<Scalars['String']>;
   where: Maybe<AssetFilter>;
   order: Maybe<Array<Maybe<AssetOrder>>>;
+};
+
+
+export type QuerySupportArgs = {
+  id: Scalars['String'];
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+export type QuerySupportCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+  where: Maybe<SupportFilter>;
+  order: Maybe<Array<Maybe<SupportOrder>>>;
 };
 
 
@@ -836,6 +855,197 @@ export enum AssetOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/support) */
+export type Support = Entry & {
+  __typename?: 'Support';
+  sys: Sys;
+  linkedFrom: Maybe<SupportLinkingCollections>;
+  title: Maybe<Scalars['String']>;
+  supportUsTitle: Maybe<Scalars['String']>;
+  text: Maybe<Scalars['String']>;
+  supportUsText: Maybe<SupportSupportUsText>;
+  links: Maybe<SupportLinks>;
+  supportUs: Maybe<Scalars['String']>;
+  ctaButton: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/support) */
+export type SupportLinkedFromArgs = {
+  allowedLocales: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/support) */
+export type SupportTitleArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/support) */
+export type SupportSupportUsTitleArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/support) */
+export type SupportTextArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/support) */
+export type SupportSupportUsTextArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/support) */
+export type SupportLinksArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/support) */
+export type SupportSupportUsArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/idt22mp7qe5g/content_types/support) */
+export type SupportCtaButtonArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+export type SupportLinkingCollections = {
+  __typename?: 'SupportLinkingCollections';
+  entryCollection: Maybe<EntryCollection>;
+};
+
+
+export type SupportLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+export type SupportSupportUsText = {
+  __typename?: 'SupportSupportUsText';
+  json: Scalars['JSON'];
+  links: SupportSupportUsTextLinks;
+};
+
+export type SupportSupportUsTextLinks = {
+  __typename?: 'SupportSupportUsTextLinks';
+  entries: SupportSupportUsTextEntries;
+  assets: SupportSupportUsTextAssets;
+};
+
+export type SupportSupportUsTextEntries = {
+  __typename?: 'SupportSupportUsTextEntries';
+  inline: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  block: Array<Maybe<Entry>>;
+};
+
+export type SupportSupportUsTextAssets = {
+  __typename?: 'SupportSupportUsTextAssets';
+  hyperlink: Array<Maybe<Asset>>;
+  block: Array<Maybe<Asset>>;
+};
+
+export type SupportLinks = {
+  __typename?: 'SupportLinks';
+  json: Scalars['JSON'];
+  links: SupportLinksLinks;
+};
+
+export type SupportLinksLinks = {
+  __typename?: 'SupportLinksLinks';
+  entries: SupportLinksEntries;
+  assets: SupportLinksAssets;
+};
+
+export type SupportLinksEntries = {
+  __typename?: 'SupportLinksEntries';
+  inline: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  block: Array<Maybe<Entry>>;
+};
+
+export type SupportLinksAssets = {
+  __typename?: 'SupportLinksAssets';
+  hyperlink: Array<Maybe<Asset>>;
+  block: Array<Maybe<Asset>>;
+};
+
+export type SupportFilter = {
+  sys: Maybe<SysFilter>;
+  title_exists: Maybe<Scalars['Boolean']>;
+  title: Maybe<Scalars['String']>;
+  title_not: Maybe<Scalars['String']>;
+  title_in: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains: Maybe<Scalars['String']>;
+  title_not_contains: Maybe<Scalars['String']>;
+  supportUsTitle_exists: Maybe<Scalars['Boolean']>;
+  supportUsTitle: Maybe<Scalars['String']>;
+  supportUsTitle_not: Maybe<Scalars['String']>;
+  supportUsTitle_in: Maybe<Array<Maybe<Scalars['String']>>>;
+  supportUsTitle_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
+  supportUsTitle_contains: Maybe<Scalars['String']>;
+  supportUsTitle_not_contains: Maybe<Scalars['String']>;
+  text_exists: Maybe<Scalars['Boolean']>;
+  text: Maybe<Scalars['String']>;
+  text_not: Maybe<Scalars['String']>;
+  text_in: Maybe<Array<Maybe<Scalars['String']>>>;
+  text_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
+  text_contains: Maybe<Scalars['String']>;
+  text_not_contains: Maybe<Scalars['String']>;
+  supportUs_exists: Maybe<Scalars['Boolean']>;
+  supportUs: Maybe<Scalars['String']>;
+  supportUs_not: Maybe<Scalars['String']>;
+  supportUs_in: Maybe<Array<Maybe<Scalars['String']>>>;
+  supportUs_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
+  supportUs_contains: Maybe<Scalars['String']>;
+  supportUs_not_contains: Maybe<Scalars['String']>;
+  ctaButton_exists: Maybe<Scalars['Boolean']>;
+  ctaButton: Maybe<Scalars['String']>;
+  ctaButton_not: Maybe<Scalars['String']>;
+  ctaButton_in: Maybe<Array<Maybe<Scalars['String']>>>;
+  ctaButton_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
+  ctaButton_contains: Maybe<Scalars['String']>;
+  ctaButton_not_contains: Maybe<Scalars['String']>;
+  OR: Maybe<Array<Maybe<SupportFilter>>>;
+  AND: Maybe<Array<Maybe<SupportFilter>>>;
+};
+
+export enum SupportOrder {
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  SupportUsTitleAsc = 'supportUsTitle_ASC',
+  SupportUsTitleDesc = 'supportUsTitle_DESC',
+  CtaButtonAsc = 'ctaButton_ASC',
+  CtaButtonDesc = 'ctaButton_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type SupportCollection = {
+  __typename?: 'SupportCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Support>>;
+};
+
 export type HomepageFilter = {
   sys: Maybe<SysFilter>;
   title_exists: Maybe<Scalars['Boolean']>;
@@ -1401,6 +1611,24 @@ export type HomepageQuery = (
         { __typename?: 'Asset' }
         & Pick<Asset, 'url' | 'width' | 'height' | 'title' | 'description'>
       )>> }
+    )> }
+  )> }
+);
+
+export type SupportQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SupportQuery = (
+  { __typename?: 'Query' }
+  & { support: Maybe<(
+    { __typename?: 'Support' }
+    & Pick<Support, 'title' | 'supportUsTitle' | 'supportUs' | 'text' | 'ctaButton'>
+    & { supportUsText: Maybe<(
+      { __typename?: 'SupportSupportUsText' }
+      & Pick<SupportSupportUsText, 'json'>
+    )>, links: Maybe<(
+      { __typename?: 'SupportLinks' }
+      & Pick<SupportLinks, 'json'>
     )> }
   )> }
 );

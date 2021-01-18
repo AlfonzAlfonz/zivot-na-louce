@@ -1,15 +1,27 @@
-import { FC } from "react";
-import Layout from "components/Layout";
 import CardStrip from "components/CardStrip";
+import Layout from "components/Layout";
 import Richtext from "components/Richtext";
-import { BLOCKS } from "@contentful/rich-text-types";
+import { supportQuery } from "data/support";
+import { GetStaticProps } from "next";
+import { FC } from "react";
 
-const Support: FC = () => {
+import { request } from "../data";
+import { SupportQuery } from "../graphql";
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      ...await request<SupportQuery>(supportQuery)
+    }
+  };
+};
+
+const Support: FC<SupportQuery> = ({ support }) => {
   return (
-    <Layout title="Podpořte nás" bg="jk-35" noSupport>
+    <Layout title={support.title} bg="jk-35">
       <div className="max-w-7xl m-auto space-y-16">
         <p className="text-center text-white mt-4">
-          Předvádět sloupy takového za živin rozhodnutí napadne letních, z stopami padákům sezona obstaral prokázat testům simulovalo z čímž, pod svému by lokalizovanému textech hry typ odhaduje kolektivu syndrom temna. V o roli valounů lesa evropský oddělující sledovaných vypálená z žili obličeje. Protein obchodů zasáhla méně čeští živočichů republiky a rozhodli vadit té vidí. Do kotel války ne i vousech, k šest to pronikání ohňové, mít dá řeky horským Darwin o spustit.
+          {support.text}
         </p>
 
         <h2 className="text-center text-white">Na co se to využije?</h2>
@@ -33,16 +45,13 @@ const Support: FC = () => {
       <div className="mt-24 mb-24 py-8 bg-white text-left">
         <div className="flex flex-col md:flex-row p-10 bg-white max-w-7xl m-auto">
           <div className="md:w-3/4 space-y-4">
-            <h2>Jak podpořit</h2>
+            <h2>{support.supportUsTitle}</h2>
 
-            <p>Ho hlasů kladení by vhodná později z unii prostředí, jedná člun mamuti rezigoval. Na plné toho chce oáze dnešní že. U kousek vajíčkách mnohem nikde říše nadace ho projev sledovaných v u upozornila cyklického kubických druhé – neznámých největších mé proti ostatně k mu smrtelníky zajímavou. </p>
-
-            <p>Předvádět sloupy takového za živin rozhodnutí napadne letních, z stopami padákům sezona obstaral prokázat testům simulovalo z čímž, pod svému by lokalizovanému textech hry typ odhaduje kolektivu syndrom temna. V o roli valounů lesa evropský oddělující sledovaných vypálená z žili obličeje. Protein obchodů zasáhla méně čeští živočichů republiky a rozhodli vadit té vidí. Do kotel války ne i vousech, k šest to pronikání ohňové, mít dá řeky horským Darwin o spustit. V okamžitě letní tj. strašnými postižením příliš k rozměry s uměle. I bez na nový obří zamrzlých mé hory. Známý náročné ze k otiskli let o v.</p>
-
-            <button className="btn">Darovat</button>
+            <Richtext value={support.supportUsText} />
+            <a href={support.ctaButton} target="_blank" rel="noreferrer" className="btn">Darovat</a>
           </div>
           <div className="md:w-1/4 space-y-8 mt-6 md:mt-0">
-            <a>Účtenky</a>
+            <Richtext value={support.links} />
           </div>
         </div>
       </div>

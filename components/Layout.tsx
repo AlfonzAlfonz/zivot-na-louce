@@ -7,19 +7,25 @@ import { FiFacebook, FiInstagram, FiMenu, FiTwitter, FiX } from "react-icons/fi"
 import { Background, useBackground, useElementBackground } from "./Background";
 import Card from "./Card";
 import { documentToText } from "./Richtext";
+import { Support, SupportQuery } from "../graphql";
 
 interface Props {
   title?: string;
   description?: string | Document;
-  noSupport?: boolean;
+  support?: SupportQuery["support"];
   bg: Background;
 }
 
-const Layout: FC<Props> = ({ bg, title, description, children, noSupport }) => {
+export const INSTAGRAM_URL = "https://www.instagram.com/zivot_na_louce/";
+export const INSTAGRAM_HANDLE = "@zivot_na_louce";
+export const FACEBOOK_URL = "https://www.facebook.com/zivotnalouce/timeline";
+export const FACEBOOK_HANDLE = "zivot_na_louce";
+
+const Layout: FC<Props> = ({ bg, title, description, children, support }) => {
   const [push] = useBackground();
   useEffect(() => void push(bg), [bg, push]);
 
-  const supportRef = useElementBackground("jk-16");
+  const supportRef = useElementBackground<HTMLDivElement>("jk-16");
 
   const metaDesc = useMemo(() => typeof description !== "object" ? description : documentToText(description), [description]);
 
@@ -39,8 +45,8 @@ const Layout: FC<Props> = ({ bg, title, description, children, noSupport }) => {
         <Link href="/">
           <a>
             <div className="flex items-center space-x-4 text-2xl">
-              <img className="w-16 rounded-full" src="/logo.jpg" alt="Logo" />
-              <span>Život na louce</span>
+              <img className="w-16" src="/logo.png" alt="Logo" />
+              <span>Život na Louce</span>
             </div>
           </a>
         </Link>
@@ -51,14 +57,11 @@ const Layout: FC<Props> = ({ bg, title, description, children, noSupport }) => {
       <div className="min-h-screen">
         {children}
 
-        {!noSupport && (
-          <div ref={supportRef as any} className="flex justify-center min-h-screen pt-32" style={{ minHeight: "350px" }}>
+        {support && (
+          <div ref={supportRef} className="flex justify-center min-h-screen pt-32" style={{ minHeight: "350px" }}>
             <Card title="Podpořte nás" _body="items-center" className="items-center max-w-7xl mb-16">
               <p className="text-center">
-                S obnovu podepsala vyspává plynu zachytit ně, ne dáli vypráví situace mor. Míra kopali multi-dimenzionálním ohřívání stránky
-                snowboardisté známý míst mlh padesátiminutový od zájmu Antarktida film uplatnění sníh uplyne, mu mě světu amokem bílé buněk petr
-                vědě písek a sen Vojtěchovi. Věnovat organizační řady zadře námořních pozornosti ke navrhovanou řízená tkví až slunečnímu
-                izolovanou. Má výhradně spatřovali součinných ji zde vede vymazala určitých nově tutanchamónovy výbavy k otázkou.
+                {support.supportUs}
               </p>
               <Link href="/podpora"><a className="btn mt-4">Podpořit</a></Link>
             </Card>
@@ -71,9 +74,14 @@ const Layout: FC<Props> = ({ bg, title, description, children, noSupport }) => {
       >
         <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8">
           <div className="flex flex-shrink-0">Život na louce {new Date().getFullYear()}</div>
-          <div className="flex flex-shrink-0 items-center"><FiInstagram size={22} /> <div className="pl-1">@zivot_na_louce</div></div>
-          <div className="flex flex-shrink-0 items-center"><FiTwitter size={22} /> <div className="pl-1">@zivot_na_louce</div></div>
-          <div className="flex flex-shrink-0 items-center"><FiFacebook size={22} /> <div className="pl-1">@zivot_na_louce</div></div>
+          <div className="flex flex-shrink-0 items-center">
+            <FiInstagram size={22} />
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="pl-1">{INSTAGRAM_HANDLE}</a>
+          </div>
+          <div className="flex flex-shrink-0 items-center">
+            <FiFacebook size={22} />
+            <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" className="pl-1">{FACEBOOK_HANDLE}</a>
+          </div>
         </div>
         <div className="flex-shrink-0">Vytvořil Denis Homolík</div>
       </div>

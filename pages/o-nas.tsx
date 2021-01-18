@@ -1,25 +1,27 @@
 import Card from "components/Card";
-import Layout from "components/Layout";
+import Layout, { FACEBOOK_HANDLE, FACEBOOK_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "components/Layout";
 import Richtext from "components/Richtext";
+import { supportQuery } from "data/support";
 import { GetStaticProps } from "next";
 import { FC } from "react";
-import { FiFacebook, FiInstagram, FiTwitter } from "react-icons/fi";
+import { FiFacebook, FiInstagram } from "react-icons/fi";
 
 import { request } from "../data";
 import { aboutUsQuery } from "../data/aboutUs";
-import { AboutUsQuery } from "../graphql";
+import { AboutUsQuery, SupportQuery } from "../graphql";
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-      ...await request<AboutUsQuery>(aboutUsQuery)
+      ...await request<AboutUsQuery>(aboutUsQuery),
+      ...await request<SupportQuery>(supportQuery)
     }
   };
 };
 
-const AboutUs: FC<AboutUsQuery> = ({ aboutUs }) => {
+const AboutUs: FC<AboutUsQuery & SupportQuery> = ({ aboutUs, support }) => {
   return (
-    <Layout title={aboutUs.title} bg="jk-2" description={aboutUs.whoWeAreText.json}>
+    <Layout title={aboutUs.title} bg="jk-2" description={aboutUs.whoWeAreText.json} support={support}>
 
       <div className="flex flex-col max-w-7xl m-auto space-y-32 mt-24 items-center">
         <Card title={aboutUs.whoWeAre} className="items-center text-center">
@@ -44,9 +46,13 @@ const AboutUs: FC<AboutUsQuery> = ({ aboutUs }) => {
 
             </div>
             <div className="md:w-1/4 space-y-8">
-              <div className="flex flex-shrink-0 items-center"><FiInstagram size={32} /> <div className="pl-1">@zivot_na_louce</div></div>
-              <div className="flex flex-shrink-0 items-center"><FiTwitter size={32} /> <div className="pl-1">@zivot_na_louce</div></div>
-              <div className="flex flex-shrink-0 items-center"><FiFacebook size={32} /> <div className="pl-1">@zivot_na_louce</div></div>
+              <div className="flex flex-shrink-0 items-center">
+                <FiInstagram size={32} />
+                <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="pl-1">{INSTAGRAM_HANDLE}</a>
+              </div>
+              <div className="flex flex-shrink-0 items-center"><FiFacebook size={32} />
+                <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" className="pl-1">{FACEBOOK_HANDLE}</a>
+              </div>
             </div>
           </div>
 

@@ -8,7 +8,6 @@ const Background: FC = ({ children }) => {
 
   const push = useCallback(
     (s: Background) => {
-      console.log(s);
       setState(old => old[0] === s ? old : [s, old[0]]);
     },
     []
@@ -34,8 +33,8 @@ const BackgroundContext = createContext<[(s: Background) => unknown, Background,
 
 export const useBackground = () => useContext(BackgroundContext);
 
-export const useElementBackground = (bg: Background) => {
-  const ref = useRef<HTMLElement>();
+export const useElementBackground = <T extends HTMLElement>(bg: Background) => {
+  const ref = useRef<T>(null!);
   const [push, state] = useBackground();
 
   useEffect(() => {
