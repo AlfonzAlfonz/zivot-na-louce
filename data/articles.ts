@@ -1,3 +1,4 @@
+import { imageFragment } from "data";
 import { gql } from "graphql-request";
 
 export const homepageArticles = gql`
@@ -9,16 +10,15 @@ export const homepageArticles = gql`
           publishedAt
         }
         img {
-          url,
-          width,
-          height,
-          title
+          ...imageFragment
         },
         title,
         perex
       }
     }
   }
+
+  ${imageFragment}
 `;
 
 export const listArticlesQuery = gql`
@@ -30,44 +30,48 @@ query ListArticles ($limit: Int!, $skip: Int!, $category: String!) {
           publishedAt
         }
         img {
-          url,
-          width,
-          height,
-          title
+          ...imageFragment
         },
         title,
         perex
       }
       total
     }
-}
+  }
+
+  ${imageFragment}
 `;
 
 export const articleDetail = gql`
   query ArticleDetail($id: String!) {
-  article(id: $id, locale: "cs") {
-    sys { publishedAt }
-    title
-    img {
-      url
-      width
-      height
+    article(id: $id, locale: "cs") {
+      sys { publishedAt }
       title
-    }
-    perex
-    text {
-      json
-    }
-    galleryCollection(locale: "cs") {
-      items {
-        url
-        width
-        height
-        description
-        title
+      img {
+        ...imageFragment
+      }
+      perex
+      text {
+        json
+        links {
+          assets {
+            block {
+              ...imageFragment
+            }
+          }
+        }
+      }
+      galleryCollection(locale: "cs") {
+        items {
+          url
+          width
+          height
+          description
+          title
+        }
       }
     }
   }
-}
 
+  ${imageFragment}
 `;

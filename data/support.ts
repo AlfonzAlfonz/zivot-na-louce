@@ -1,3 +1,4 @@
+import { imageFragment } from "data";
 import { gql } from "graphql-request";
 
 export const supportQuery = gql`
@@ -8,13 +9,29 @@ export const supportQuery = gql`
       supportUs
       supportUsText {
         json
+        links {
+          assets {
+            block {
+              ...imageFragment
+            }
+          }
+        }
       }
       links {
         json
+        links {
+          assets {
+            block {
+              ...imageFragment
+            }
+          }
+        }
       }
       supportUs
       text
       ctaButton
     }
   }
+
+  ${imageFragment}
 `;

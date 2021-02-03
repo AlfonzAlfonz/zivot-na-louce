@@ -1005,6 +1005,12 @@ export type AnimalFilter = {
   name_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
   name_contains: Maybe<Scalars['String']>;
   name_not_contains: Maybe<Scalars['String']>;
+  perex_exists: Maybe<Scalars['Boolean']>;
+  perex_contains: Maybe<Scalars['String']>;
+  perex_not_contains: Maybe<Scalars['String']>;
+  text_exists: Maybe<Scalars['Boolean']>;
+  text_contains: Maybe<Scalars['String']>;
+  text_not_contains: Maybe<Scalars['String']>;
   gone_exists: Maybe<Scalars['Boolean']>;
   gone: Maybe<Scalars['Boolean']>;
   gone_not: Maybe<Scalars['Boolean']>;
@@ -1175,6 +1181,12 @@ export type SupportFilter = {
   text_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
   text_contains: Maybe<Scalars['String']>;
   text_not_contains: Maybe<Scalars['String']>;
+  supportUsText_exists: Maybe<Scalars['Boolean']>;
+  supportUsText_contains: Maybe<Scalars['String']>;
+  supportUsText_not_contains: Maybe<Scalars['String']>;
+  links_exists: Maybe<Scalars['Boolean']>;
+  links_contains: Maybe<Scalars['String']>;
+  links_not_contains: Maybe<Scalars['String']>;
   supportUs_exists: Maybe<Scalars['Boolean']>;
   supportUs: Maybe<Scalars['String']>;
   supportUs_not: Maybe<Scalars['String']>;
@@ -1241,6 +1253,9 @@ export type HomepageFilter = {
   whoWeAreTitle_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
   whoWeAreTitle_contains: Maybe<Scalars['String']>;
   whoWeAreTitle_not_contains: Maybe<Scalars['String']>;
+  whoWeAreText_exists: Maybe<Scalars['Boolean']>;
+  whoWeAreText_contains: Maybe<Scalars['String']>;
+  whoWeAreText_not_contains: Maybe<Scalars['String']>;
   fotkyCollection_exists: Maybe<Scalars['Boolean']>;
   OR: Maybe<Array<Maybe<HomepageFilter>>>;
   AND: Maybe<Array<Maybe<HomepageFilter>>>;
@@ -1285,6 +1300,9 @@ export type ArticleFilter = {
   perex_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
   perex_contains: Maybe<Scalars['String']>;
   perex_not_contains: Maybe<Scalars['String']>;
+  text_exists: Maybe<Scalars['Boolean']>;
+  text_contains: Maybe<Scalars['String']>;
+  text_not_contains: Maybe<Scalars['String']>;
   galleryCollection_exists: Maybe<Scalars['Boolean']>;
   OR: Maybe<Array<Maybe<ArticleFilter>>>;
   AND: Maybe<Array<Maybe<ArticleFilter>>>;
@@ -1510,6 +1528,9 @@ export type AboutUsFilter = {
   whoWeAre_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
   whoWeAre_contains: Maybe<Scalars['String']>;
   whoWeAre_not_contains: Maybe<Scalars['String']>;
+  whoWeAreText_exists: Maybe<Scalars['Boolean']>;
+  whoWeAreText_contains: Maybe<Scalars['String']>;
+  whoWeAreText_not_contains: Maybe<Scalars['String']>;
   vision_exists: Maybe<Scalars['Boolean']>;
   vision: Maybe<Scalars['String']>;
   vision_not: Maybe<Scalars['String']>;
@@ -1517,6 +1538,9 @@ export type AboutUsFilter = {
   vision_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
   vision_contains: Maybe<Scalars['String']>;
   vision_not_contains: Maybe<Scalars['String']>;
+  visionText_exists: Maybe<Scalars['Boolean']>;
+  visionText_contains: Maybe<Scalars['String']>;
+  visionText_not_contains: Maybe<Scalars['String']>;
   project_exists: Maybe<Scalars['Boolean']>;
   project: Maybe<Scalars['String']>;
   project_not: Maybe<Scalars['String']>;
@@ -1524,6 +1548,9 @@ export type AboutUsFilter = {
   project_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
   project_contains: Maybe<Scalars['String']>;
   project_not_contains: Maybe<Scalars['String']>;
+  projectText_exists: Maybe<Scalars['Boolean']>;
+  projectText_contains: Maybe<Scalars['String']>;
+  projectText_not_contains: Maybe<Scalars['String']>;
   contact_exists: Maybe<Scalars['Boolean']>;
   contact: Maybe<Scalars['String']>;
   contact_not: Maybe<Scalars['String']>;
@@ -1531,6 +1558,9 @@ export type AboutUsFilter = {
   contact_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
   contact_contains: Maybe<Scalars['String']>;
   contact_not_contains: Maybe<Scalars['String']>;
+  contactText_exists: Maybe<Scalars['Boolean']>;
+  contactText_contains: Maybe<Scalars['String']>;
+  contactText_not_contains: Maybe<Scalars['String']>;
   OR: Maybe<Array<Maybe<AboutUsFilter>>>;
   AND: Maybe<Array<Maybe<AboutUsFilter>>>;
 };
@@ -1574,6 +1604,9 @@ export type BuildingFilter = {
   name_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
   name_contains: Maybe<Scalars['String']>;
   name_not_contains: Maybe<Scalars['String']>;
+  text_exists: Maybe<Scalars['Boolean']>;
+  text_contains: Maybe<Scalars['String']>;
+  text_not_contains: Maybe<Scalars['String']>;
   OR: Maybe<Array<Maybe<BuildingFilter>>>;
   AND: Maybe<Array<Maybe<BuildingFilter>>>;
 };
@@ -1602,15 +1635,55 @@ export type AboutUsQuery = (
     & { whoWeAreText: Maybe<(
       { __typename?: 'AboutUsWhoWeAreText' }
       & Pick<AboutUsWhoWeAreText, 'json'>
+      & { links: (
+        { __typename?: 'AboutUsWhoWeAreTextLinks' }
+        & { assets: (
+          { __typename?: 'AboutUsWhoWeAreTextAssets' }
+          & { block: Array<Maybe<(
+            { __typename?: 'Asset' }
+            & ImageFragmentFragment
+          )>> }
+        ) }
+      ) }
     )>, visionText: Maybe<(
       { __typename?: 'AboutUsVisionText' }
       & Pick<AboutUsVisionText, 'json'>
+      & { links: (
+        { __typename?: 'AboutUsVisionTextLinks' }
+        & { assets: (
+          { __typename?: 'AboutUsVisionTextAssets' }
+          & { block: Array<Maybe<(
+            { __typename?: 'Asset' }
+            & ImageFragmentFragment
+          )>> }
+        ) }
+      ) }
     )>, projectText: Maybe<(
       { __typename?: 'AboutUsProjectText' }
       & Pick<AboutUsProjectText, 'json'>
+      & { links: (
+        { __typename?: 'AboutUsProjectTextLinks' }
+        & { assets: (
+          { __typename?: 'AboutUsProjectTextAssets' }
+          & { block: Array<Maybe<(
+            { __typename?: 'Asset' }
+            & ImageFragmentFragment
+          )>> }
+        ) }
+      ) }
     )>, contactText: Maybe<(
       { __typename?: 'AboutUsContactText' }
       & Pick<AboutUsContactText, 'json'>
+      & { links: (
+        { __typename?: 'AboutUsContactTextLinks' }
+        & { assets: (
+          { __typename?: 'AboutUsContactTextAssets' }
+          & { block: Array<Maybe<(
+            { __typename?: 'Asset' }
+            & ImageFragmentFragment
+          )>> }
+        ) }
+      ) }
     )> }
   )> }
 );
@@ -1661,9 +1734,29 @@ export type AnimalsRipQuery = (
       )>, perex: Maybe<(
         { __typename?: 'AnimalPerex' }
         & Pick<AnimalPerex, 'json'>
+        & { links: (
+          { __typename?: 'AnimalPerexLinks' }
+          & { assets: (
+            { __typename?: 'AnimalPerexAssets' }
+            & { block: Array<Maybe<(
+              { __typename?: 'Asset' }
+              & ImageFragmentFragment
+            )>> }
+          ) }
+        ) }
       )>, text: Maybe<(
         { __typename?: 'AnimalText' }
         & Pick<AnimalText, 'json'>
+        & { links: (
+          { __typename?: 'AnimalTextLinks' }
+          & { assets: (
+            { __typename?: 'AnimalTextAssets' }
+            & { block: Array<Maybe<(
+              { __typename?: 'Asset' }
+              & ImageFragmentFragment
+            )>> }
+          ) }
+        ) }
       )> }
     )>> }
   )> }
@@ -1752,6 +1845,16 @@ export type ArticleDetailQuery = (
     )>, text: Maybe<(
       { __typename?: 'ArticleText' }
       & Pick<ArticleText, 'json'>
+      & { links: (
+        { __typename?: 'ArticleTextLinks' }
+        & { assets: (
+          { __typename?: 'ArticleTextAssets' }
+          & { block: Array<Maybe<(
+            { __typename?: 'Asset' }
+            & ImageFragmentFragment
+          )>> }
+        ) }
+      ) }
     )>, galleryCollection: Maybe<(
       { __typename?: 'AssetCollection' }
       & { items: Array<Maybe<(
@@ -1781,6 +1884,16 @@ export type ListBuildingsQuery = (
       )>, text: Maybe<(
         { __typename?: 'BuildingText' }
         & Pick<BuildingText, 'json'>
+        & { links: (
+          { __typename?: 'BuildingTextLinks' }
+          & { assets: (
+            { __typename?: 'BuildingTextAssets' }
+            & { block: Array<Maybe<(
+              { __typename?: 'Asset' }
+              & ImageFragmentFragment
+            )>> }
+          ) }
+        ) }
       )> }
     )>> }
   )> }
@@ -1797,6 +1910,16 @@ export type HomepageQuery = (
     & { whoWeAreText: Maybe<(
       { __typename?: 'HomepageWhoWeAreText' }
       & Pick<HomepageWhoWeAreText, 'json'>
+      & { links: (
+        { __typename?: 'HomepageWhoWeAreTextLinks' }
+        & { assets: (
+          { __typename?: 'HomepageWhoWeAreTextAssets' }
+          & { block: Array<Maybe<(
+            { __typename?: 'Asset' }
+            & ImageFragmentFragment
+          )>> }
+        ) }
+      ) }
     )>, fotkyCollection: Maybe<(
       { __typename?: 'AssetCollection' }
       & { items: Array<Maybe<(
@@ -1810,6 +1933,10 @@ export type HomepageQuery = (
 export type ImageFragmentFragment = (
   { __typename?: 'Asset' }
   & Pick<Asset, 'url' | 'width' | 'height' | 'description' | 'title'>
+  & { sys: (
+    { __typename?: 'Sys' }
+    & Pick<Sys, 'id'>
+  ) }
 );
 
 export type SupportQueryVariables = Exact<{ [key: string]: never; }>;
@@ -1823,9 +1950,29 @@ export type SupportQuery = (
     & { supportUsText: Maybe<(
       { __typename?: 'SupportSupportUsText' }
       & Pick<SupportSupportUsText, 'json'>
+      & { links: (
+        { __typename?: 'SupportSupportUsTextLinks' }
+        & { assets: (
+          { __typename?: 'SupportSupportUsTextAssets' }
+          & { block: Array<Maybe<(
+            { __typename?: 'Asset' }
+            & ImageFragmentFragment
+          )>> }
+        ) }
+      ) }
     )>, links: Maybe<(
       { __typename?: 'SupportLinks' }
       & Pick<SupportLinks, 'json'>
+      & { links: (
+        { __typename?: 'SupportLinksLinks' }
+        & { assets: (
+          { __typename?: 'SupportLinksAssets' }
+          & { block: Array<Maybe<(
+            { __typename?: 'Asset' }
+            & ImageFragmentFragment
+          )>> }
+        ) }
+      ) }
     )> }
   )> }
 );

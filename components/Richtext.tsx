@@ -26,7 +26,7 @@ const Richtext: FC<Props> = ({ value }) => {
     <>
       {documentToReactComponents(
         val.json,
-        options(val.links.assets.block)
+        val.links ? options(val.links.assets.block) : undefined
       )}
     </>
   );

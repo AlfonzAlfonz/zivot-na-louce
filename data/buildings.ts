@@ -1,3 +1,4 @@
+import { imageFragment } from "data";
 import { gql } from "graphql-request";
 
 export const listBuildingsQuery = gql`

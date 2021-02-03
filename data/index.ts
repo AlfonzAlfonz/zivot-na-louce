@@ -6,6 +6,9 @@ export const request = <T extends object>(query: RequestDocument, v?: {}) =>
 
 export const imageFragment = gql`
   fragment imageFragment on Asset {
+    sys {
+      id
+    }
     url,
     width,
     height,

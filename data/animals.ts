@@ -1,5 +1,6 @@
 import { imageFragment } from "data";
 import { gql } from "graphql-request";
+
 export const animalsQuery = gql`
   query Animals {
     animalCollection(locale: "cs", where: { gone: false }) {
@@ -38,7 +39,7 @@ export const animalsRipQuery = gql`
         perex {
           json
         },
-        text{
+        text {
           json
         }
       }

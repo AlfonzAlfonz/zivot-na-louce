@@ -1,4 +1,6 @@
+import { imageFragment } from "data";
 import { gql } from "graphql-request";
+
 export const homepageQuery = gql`
   query Homepage {
     homepage(id: "4VGfrMIhPGr08XYD1ZxH1O") {
@@ -7,6 +9,13 @@ export const homepageQuery = gql`
       whoWeAreTitle
       whoWeAreText {
         json
+        links {
+          assets {
+            block {
+              ...imageFragment
+            }
+          }
+        }
       }
       fotkyCollection {
         items {
@@ -19,4 +28,6 @@ export const homepageQuery = gql`
       }
     }
   }
+
+  ${imageFragment}
 `;
