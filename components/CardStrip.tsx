@@ -13,7 +13,7 @@ interface Props {
 interface Content {
   title: ReactNode;
   text: ReactNode;
-  img?: Partial<Asset>;
+  img?: Omit<Partial<Asset>, "sys">;
   link?: string;
 }
 

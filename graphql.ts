@@ -1734,29 +1734,9 @@ export type AnimalsRipQuery = (
       )>, perex: Maybe<(
         { __typename?: 'AnimalPerex' }
         & Pick<AnimalPerex, 'json'>
-        & { links: (
-          { __typename?: 'AnimalPerexLinks' }
-          & { assets: (
-            { __typename?: 'AnimalPerexAssets' }
-            & { block: Array<Maybe<(
-              { __typename?: 'Asset' }
-              & ImageFragmentFragment
-            )>> }
-          ) }
-        ) }
       )>, text: Maybe<(
         { __typename?: 'AnimalText' }
         & Pick<AnimalText, 'json'>
-        & { links: (
-          { __typename?: 'AnimalTextLinks' }
-          & { assets: (
-            { __typename?: 'AnimalTextAssets' }
-            & { block: Array<Maybe<(
-              { __typename?: 'Asset' }
-              & ImageFragmentFragment
-            )>> }
-          ) }
-        ) }
       )> }
     )>> }
   )> }
@@ -1794,7 +1774,7 @@ export type HomepageArticlesQuery = (
         & Pick<Sys, 'id' | 'publishedAt'>
       ), img: Maybe<(
         { __typename?: 'Asset' }
-        & Pick<Asset, 'url' | 'width' | 'height' | 'title'>
+        & ImageFragmentFragment
       )> }
     )>> }
   )> }
@@ -1820,7 +1800,7 @@ export type ListArticlesQuery = (
         & Pick<Sys, 'id' | 'publishedAt'>
       ), img: Maybe<(
         { __typename?: 'Asset' }
-        & Pick<Asset, 'url' | 'width' | 'height' | 'title'>
+        & ImageFragmentFragment
       )> }
     )>> }
   )> }
@@ -1841,7 +1821,7 @@ export type ArticleDetailQuery = (
       & Pick<Sys, 'publishedAt'>
     ), img: Maybe<(
       { __typename?: 'Asset' }
-      & Pick<Asset, 'url' | 'width' | 'height' | 'title'>
+      & ImageFragmentFragment
     )>, text: Maybe<(
       { __typename?: 'ArticleText' }
       & Pick<ArticleText, 'json'>
@@ -1884,16 +1864,6 @@ export type ListBuildingsQuery = (
       )>, text: Maybe<(
         { __typename?: 'BuildingText' }
         & Pick<BuildingText, 'json'>
-        & { links: (
-          { __typename?: 'BuildingTextLinks' }
-          & { assets: (
-            { __typename?: 'BuildingTextAssets' }
-            & { block: Array<Maybe<(
-              { __typename?: 'Asset' }
-              & ImageFragmentFragment
-            )>> }
-          ) }
-        ) }
       )> }
     )>> }
   )> }
