@@ -9,7 +9,7 @@ interface Props {
   | Document
   | {
     json: Document;
-    links: {
+    links?: {
       assets: {
         block: RichtextAsset[];
       };
