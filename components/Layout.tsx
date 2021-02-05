@@ -2,7 +2,7 @@ import { Document } from "@contentful/rich-text-types";
 import Head from "next/head";
 import Link from "next/link";
 import React, { FC, ReactNode, useEffect, useMemo, useRef, useState } from "react";
-import { FiChevronDown, FiFacebook, FiInstagram, FiMenu, FiTwitter, FiX } from "react-icons/fi";
+import { FiChevronDown, FiFacebook, FiInstagram, FiMenu, FiTwitter, FiX, FiYoutube } from "react-icons/fi";
 
 import { Background, useBackground, useElementBackground } from "./Background";
 import Card from "./Card";
@@ -21,6 +21,8 @@ export const INSTAGRAM_URL = "https://www.instagram.com/zivot_na_louce/";
 export const INSTAGRAM_HANDLE = "@zivot_na_louce";
 export const FACEBOOK_URL = "https://www.facebook.com/zivotnalouce/timeline";
 export const FACEBOOK_HANDLE = "zivot_na_louce";
+export const YOUTUBE_URL = "https://www.youtube.com/channel/UCXy-23WP2nmJnm3UhSMetbA";
+export const YOUTUBE_HANDLE = "Zivot na Louce";
 
 const Layout: FC<Props> = ({ bg, title, description, children, support }) => {
   const [push] = useBackground();
@@ -87,6 +89,10 @@ const Layout: FC<Props> = ({ bg, title, description, children, support }) => {
           <div className="flex flex-shrink-0 items-center">
             <FiFacebook size={22} />
             <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" className="pl-1">{FACEBOOK_HANDLE}</a>
+          </div>
+          <div className="flex flex-shrink-0 items-center">
+            <FiYoutube size={22} />
+            <a href={YOUTUBE_URL} target="_blank" rel="noreferrer" className="pl-1">{YOUTUBE_HANDLE}</a>
           </div>
         </div>
         <div className="flex-shrink-0">Vytvořil Denis Homolík</div>

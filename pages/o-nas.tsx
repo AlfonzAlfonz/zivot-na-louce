@@ -4,11 +4,12 @@ import Richtext from "components/Richtext";
 import { supportQuery } from "data/support";
 import { GetStaticProps } from "next";
 import { FC } from "react";
-import { FiFacebook, FiInstagram } from "react-icons/fi";
+import { FiFacebook, FiInstagram, FiYoutube } from "react-icons/fi";
 
 import { request } from "../data";
 import { aboutUsQuery } from "../data/aboutUs";
 import { AboutUsQuery, SupportQuery } from "../graphql";
+import { YOUTUBE_HANDLE, YOUTUBE_URL } from '../components/Layout';
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -53,11 +54,11 @@ const AboutUs: FC<AboutUsQuery & SupportQuery> = ({ aboutUs, support }) => {
               <div className="flex flex-shrink-0 items-center"><FiFacebook size={32} />
                 <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" className="pl-1">{FACEBOOK_HANDLE}</a>
               </div>
+              <div className="flex flex-shrink-0 items-center"><FiYoutube size={32} />
+                <a href={YOUTUBE_URL} target="_blank" rel="noreferrer" className="pl-1">{YOUTUBE_HANDLE}</a>
+              </div>
             </div>
           </div>
-
-        </div>
-        <div className="card flex-row items-center">
 
         </div>
       </div>
