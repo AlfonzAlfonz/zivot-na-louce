@@ -16,8 +16,8 @@ const Background: FC = ({ children }) => {
   return (
     <>
       <div className="background-overlay">
-        <div className={`background ${state[1]}`} />
-        <div key={state[0]} className={`background current ${state[0]}`} />
+        <div className="background" style={{ backgroundImage: `url("/img/${state[1].toUpperCase()}.optim.jpg")` }} />
+        <div key={state[0]} className="background current" style={{ backgroundImage: `url("/img/${state[0].toUpperCase()}.optim.jpg")` }} />
       </div>
       <BackgroundContext.Provider value={[push, ...state]}>
         {children}
