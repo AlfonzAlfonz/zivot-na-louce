@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { documentToReactComponents, Options } from "@contentful/rich-text-react-renderer";
-import { Block, BLOCKS, Document, Inline, Text } from "@contentful/rich-text-types";
+import { Block, BLOCKS, Document, Inline, MARKS, Text } from "@contentful/rich-text-types";
 import { Asset } from "../graphql";
 import Image from "next/image";
 
@@ -37,17 +37,21 @@ export default Richtext;
 const options = (hyperlinkAssets: RichtextAsset[]): Options => ({
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) =>
-      <p className="mt-4">{children}</p>,
+      <p className="mt-4 whitespace-pre-line">{children}</p>,
     [BLOCKS.HEADING_2]: (_, children) => <h2 className="mt-6">{children}</h2>,
     [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
       const { id } = node.data.target.sys;
       const asset = hyperlinkAssets.find(a => a.sys.id === id);
       return asset && (
-        <div className="p-4 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full">
+        <div className="p-4 lg:w-1/2 w-full m-auto">
           <Image src={asset.url} alt={asset.title} width={asset.width} height={asset.height} layout="responsive" />
         </div>
       );
     }
+  },
+  renderMark: {
+    [MARKS.BOLD]: (children) => <strong>{children}</strong>,
+    [MARKS.ITALIC]: (children) => <em>{children}</em>
   }
 });
 

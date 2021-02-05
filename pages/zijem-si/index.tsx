@@ -4,6 +4,7 @@ import { request } from "data";
 import { listArticlesQuery } from "data/articles";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { FC } from "react";
 import getSlug from "speakingurl";
 import { parse } from "url";
@@ -36,19 +37,23 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ req }) => 
 };
 
 const Life: FC<Props> = ({ articles, page }) => {
-  const btn = (n: number, active: boolean = false) =>
-    <div className={`py-3 px-4 bg-white${active ? " font-bold" : ""}`}>{n}</div>;
+  const { query } = useRouter();
+  const ctg = (label: string, value?: string) => (
+    <Link href={value ? `?ctg=${value}` : ""}>
+      <a className={`p-4 sm:max-w-xs w-full ${query.ctg === value ? "bg-black text-white" : "bg-white"}`}>{label}</a>
+    </Link>
+  );
 
   const lastPage = Math.floor(articles.articleCollection.total / PER_PAGE);
 
   return (
     <Layout title="Žijem si" bg="jk-35">
-      <div className="flex flex-col max-w-7xl m-auto space-y-16 mt-24 items-center">
+      <div className="flex flex-col max-w-7xl m-auto space-y-16 mt-24 items-center mb-24">
         <div className="flex flex-col sm:flex-row w-full shadow-xl sm:shadow-none sm:space-x-8 justify-center">
-          <Link href=""><a className="bg-white p-4 sm:max-w-xs w-full">Všechno</a></Link>
-          <Link href="?ctg=clanek"><a className="bg-white p-4 sm:max-w-xs w-full">Články</a></Link>
-          <Link href="?ctg=akce"><a className="bg-white p-4 sm:max-w-xs w-full">Akce</a></Link>
-          <Link href="?ctg=recept"><a className="bg-white p-4 sm:max-w-xs w-full">Recepty</a></Link>
+          {ctg("Všechno")}
+          {ctg("Články", "clanek")}
+          {ctg("Akce", "akce")}
+          {ctg("Recepty", "recept")}
         </div>
 
         <div className="space-y-16">

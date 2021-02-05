@@ -23,23 +23,6 @@ const Support: FC<SupportQuery> = ({ support }) => {
         <p className="text-center text-white mt-4">
           {support.text}
         </p>
-
-        <h2 className="text-center text-white">Na co se to využije?</h2>
-
-        <div className="space-y-16">
-          <CardStrip
-            items={[...Array(4)].map((_, i) => ({
-              title: "Lorem ipsum",
-              img: {
-                url: "/img/JK-1.jpg",
-                width: 1024,
-                height: 540
-              },
-              text: ""
-            }))}
-          />
-
-        </div>
       </div>
 
       <div className="mt-24 mb-24 py-8 bg-white text-left">

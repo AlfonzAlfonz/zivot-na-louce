@@ -12,20 +12,23 @@ import { ArticleDetailQuery } from "../../../graphql";
 import Card from "components/Card";
 import Img from "next/image";
 import Lightbox, { useLightbox } from "components/Lightbox";
+import Image from "next/image";
 
 export const getServerSideProps: GetServerSideProps = async ({ query, res }) => {
   const article = await request<ArticleDetailQuery>(articleDetail, { id: only(query.id) });
   if (article.article === null) {
-    res.statusCode = 404;
     return {
-      props: { status: 404 }
+      notFound: true
     };
   }
   const slug = getSlug(article.article.title);
   if (slug !== query.slug) {
-    res.writeHead(301, { Location: slug });
-    res.end();
-    return { props: {} };
+    return {
+      redirect: {
+        statusCode: 301,
+        destination: slug
+      }
+    };
   }
   return {
     props: article
@@ -42,18 +45,28 @@ const Life: FC<ArticleDetailQuery | { status: 404 }> = (props) => {
   return (
     <Layout bg="jk-35" description={article.text.json}>
       <div className="max-w-7xl m-auto pt-40">
-        <div className="relative">
+        <div className="relative text-center">
           <h1 className="text-center text-white">{article.title}</h1>
-        </div>
-      </div>
-      <div className="flex flex-col max-w-7xl m-auto space-y-16 mt-24 items-center">
-        <Card>
           <time
-            className="mb-4 italic"
+            className="mb-4 italic text-white"
             dateTime={article.sys.publishedAt}
           >
             {new Date(article.sys.publishedAt).toLocaleDateString("cs")}
           </time>
+        </div>
+      </div>
+      <div className="flex flex-col max-w-7xl m-auto space-y-16 mt-24 items-center mb-24">
+        <div className="bg-white rounded shadow-2xl p-8 w-full">
+
+          <div className="max-w-xl w-1/2 float-right mb-4 ml-4">
+            <Image
+              src={article.img.url}
+              width={article.img.width}
+              height={article.img.height}
+              alt={article.title}
+
+            />
+          </div>
           <p className="text-xl">{article.perex}</p>
 
           <Richtext value={article.text} />
@@ -72,7 +85,7 @@ const Life: FC<ArticleDetailQuery | { status: 404 }> = (props) => {
               </div>
             ))}
           </div>
-        </Card>
+        </div>
       </div>
       <Lightbox {...lightbox} />
     </Layout>

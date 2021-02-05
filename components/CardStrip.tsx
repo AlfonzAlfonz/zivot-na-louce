@@ -45,7 +45,7 @@ const CardStrip: FC<Props> = ({ items, noPadding }) => {
   return (
     <div className="w-full space-y-16">
       {items.map((itm, i) => itm.link
-        ? <Link href={itm.link}><a className="block">{card(itm, i)}</a></Link>
+        ? <Link key={i} href={itm.link}><a className="block">{card(itm, i)}</a></Link>
         : card(itm, i)
       )}
     </div>

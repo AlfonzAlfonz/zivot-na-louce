@@ -8,6 +8,7 @@ import { Background, useBackground, useElementBackground } from "./Background";
 import Card from "./Card";
 import { documentToText } from "./Richtext";
 import { Support, SupportQuery } from "../graphql";
+import Image from "next/image";
 
 interface Props {
   title?: string;
@@ -45,7 +46,7 @@ const Layout: FC<Props> = ({ bg, title, description, children, support }) => {
         <Link href="/">
           <a>
             <div className="flex items-center space-x-4 text-2xl">
-              <img className="w-16" src="/logo.png" alt="Logo" />
+              <Image width={64} height={64} className="w-16" src="/logo.png" alt="Logo" />
               <span>Život na Louce</span>
             </div>
           </a>
@@ -94,6 +95,8 @@ export default Layout;
 const Menu: FC = () => {
   const [state, setState] = useState(false);
   const [animals, setAnimals] = useState(false);
+  const [support, setSupport] = useState(false);
+  const [blog, setBlog] = useState(false);
   return (
     <>
       <ul className="hidden md:flex h-24">
@@ -115,9 +118,36 @@ const Menu: FC = () => {
             </li>
           </ul>
         </li>
-        <li {...liStyle}><Link href="/zijem-si"><a>Žijem si</a></Link></li>
+        <li {...liStyle} onMouseEnter={() => setBlog(true)} onMouseLeave={() => setBlog(false)}>
+          <Link href="/zijem-si"><a>Žijem si <FiChevronDown size={16} className="inline-block" /></a></Link>
+          <ul
+            className={`${blog ? "opacity-100" : "opacity-0 pointer-events-none"} transition-all absolute bg-white text-black min-w-max top-16 right-0`}
+          >
+            <li className="hover:bg-gray-900 hover:bg-opacity-20">
+              <Link href="/zijem-si?ctg=clanek"><a className="p-3 pr-5 block">Články</a></Link>
+            </li>
+            <li className="hover:bg-gray-900 hover:bg-opacity-20">
+              <Link href="/zijem-si/5XRKXdr0Dk7Dkc16gRmkeX/co-se-nam-hodi"><a className="p-3 pr-5 block">Co se nám hodí</a></Link>
+            </li>
+            <li className="hover:bg-gray-900 hover:bg-opacity-20">
+              <Link href="/zijem-si?ctg=akce"><a className="p-3 pr-5 block">Akce</a></Link>
+            </li>
+            <li className="hover:bg-gray-900 hover:bg-opacity-20">
+              <Link href="/zijem-si?ctg=recept"><a className="p-3 pr-5 block">Recepty</a></Link>
+            </li>
+          </ul>
+        </li>
         <li {...liStyle}><Link href="/stavime-si"><a>Stavíme si</a></Link></li>
-        <li {...liStyle}><Link href="/podpora"><a>Podpora</a></Link></li>
+        <li {...liStyle} onMouseEnter={() => setSupport(true)} onMouseLeave={() => setSupport(false)}>
+          <Link href="/podpora"><a>Podpora <FiChevronDown size={16} className="inline-block" /></a></Link>
+          <ul
+            className={`${support ? "opacity-100" : "opacity-0 pointer-events-none"} transition-all absolute bg-white text-black min-w-max top-16 right-0`}
+          >
+            <li className="hover:bg-gray-900 hover:bg-opacity-20">
+              <Link href="/dekujeme"><a className="p-3 pr-5 block">Děkujeme</a></Link>
+            </li>
+          </ul>
+        </li>
       </ul>
       <div className="md:hidden text-center">
         <div className="pr-4" onClick={() => setState(s => !s)}>
