@@ -34,12 +34,17 @@ const Layout: FC<Props> = ({ bg, title, description, children, support }) => {
     <>
       <Head>
         <title>{title ? `${title} | Život na louce` : "Život na louce"}</title>
+        <meta property="og:title" content={title ? `${title} | Život na louce` : "Život na louce"} />
         {description && (
-          <meta
-            name="description"
-            content={metaDesc}
-          />
+          <>
+            <meta
+              name="description"
+              content={metaDesc}
+            />
+            <meta property="og:description" content="Get from SEO newbie to SEO pro in 8 simple steps." />
+          </>
         )}
+        <meta property="og:locale" content="cs_CZ" />
       </Head>
 
       <div className="fixed w-full text-white flex justify-between h-24 items-center px-2 sm:px-8 bg-gray-900 bg-opacity-80 z-20 shadow-lg">

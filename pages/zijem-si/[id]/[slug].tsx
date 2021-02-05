@@ -13,6 +13,7 @@ import Card from "components/Card";
 import Img from "next/image";
 import Lightbox, { useLightbox } from "components/Lightbox";
 import Image from "next/image";
+import Head from "next/head";
 
 export const getServerSideProps: GetServerSideProps = async ({ query, res }) => {
   const article = await request<ArticleDetailQuery>(articleDetail, { id: only(query.id) });
@@ -44,6 +45,14 @@ const Life: FC<ArticleDetailQuery | { status: 404 }> = (props) => {
 
   return (
     <Layout bg="jk-35" description={article.text.json}>
+      <Head>
+        <title>{article.title}</title>
+
+        <meta property="og:title" content={article.title} />
+        <meta property="og:image" content={article.img.url} />
+        <meta property="og:type" content="article" />
+
+      </Head>
       <div className="max-w-7xl m-auto pt-40">
         <div className="relative text-center">
           <h1 className="text-center text-white">{article.title}</h1>
