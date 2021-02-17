@@ -23,20 +23,9 @@ interface Props {
 }
 
 const Aminals: FC<Props & SupportQuery> = ({ animals, support }) => {
-  const img = (a: Partial<Asset>) => (
-    <div className="w-full">
-      <Img
-        src={a.url!}
-        alt={a.title}
-        width={a.width!}
-        height={a.height!}
-      />
-    </div>
-  );
-
   return (
     <Layout title="Zvířata" bg="jk-2" description={animals.animalCollection.items[0]?.text.json} support={support}>
-      <div className="flex flex-col max-w-7xl m-auto mb-16 space-y-32 mt-24 items-center">
+      <div className="container mt-24">
         <CardStrip
           items={animals.animalCollection.items.map(a => ({
             title: a.name,

@@ -33,10 +33,7 @@ const Index: FC<HomepageQuery & HomepageArticlesQuery & SupportQuery> = ({ homep
 
   return (
     <Layout bg="jk-35" description={homepage.whoWeAreText.json} support={support}>
-      <div
-        ref={introRef as any}
-        className="min-h-screen 2xl:max-w-7xl m-auto flex flex-col xl:justify-center items-start hero px-8 md:px-16 2xl:px-0 pt-32 text-white"
-      >
+      <div ref={introRef as any} className="container items-start min-h-screen pt-32 text-white">
         <h1 className="pb-8">{homepage.title}</h1>
         <p className="max-w-3xl pb-8">
           {homepage.text}
@@ -44,7 +41,7 @@ const Index: FC<HomepageQuery & HomepageArticlesQuery & SupportQuery> = ({ homep
         <span className="btn mb-24">E-shop</span>
       </div>
 
-      <Card className="text-center justify-center" _body="w-full xl:max-w-6 2xl:max-w-7xl m-auto">
+      <Card className="text-center justify-center" _body="container">
         <h2 className="text-4xl">{homepage.whoWeAreTitle}</h2>
 
         <Richtext value={homepage.whoWeAreText} />

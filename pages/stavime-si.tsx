@@ -19,7 +19,7 @@ export const getServerSideProps: GetStaticProps = async () => ({
 const Buildings: FC<ListBuildingsQuery & SupportQuery> = ({ buildingCollection, support }) => {
   return (
     <Layout title="Stavíme si" bg="jk-35" support={support}>
-      <div className="flex flex-col max-w-7xl m-auto space-y-16 mt-24 items-center">
+      <div className="container space-y-16 mt-24 items-center">
         <CardStrip
           items={buildingCollection.items.map((b, i) => ({
             title: b.name,

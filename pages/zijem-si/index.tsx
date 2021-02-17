@@ -48,7 +48,7 @@ const Life: FC<Props> = ({ articles, page }) => {
 
   return (
     <Layout title="Žijem si" bg="jk-35">
-      <div className="flex flex-col max-w-7xl m-auto space-y-16 mt-24 items-center mb-24">
+      <div className="container space-y-16 mt-24 mb-24">
         <div className="flex flex-col sm:flex-row w-full shadow-xl sm:shadow-none sm:space-x-8 justify-center">
           {ctg("Všechno")}
           {ctg("Články", "clanek")}

@@ -66,6 +66,18 @@ body {
   @apply px-12 py-3 bg-gray-700 text-white border-none inline-flex cursor-pointer;
 }
 
+.container {
+  @apply w-full m-auto flex flex-col px-8 md:px-16 xl:justify-center 2xl:px-0 2xl:max-w-7xl ;
+}
+
+.card {
+  @apply flex flex-col bg-white rounded shadow-2xl md:flex-row md:justify-between;
+}
+
+.card-body {
+  @apply flex flex-col p-8;
+}
+
 /* Start purging... */
 @tailwind utilities;
 /* Stop purging. */

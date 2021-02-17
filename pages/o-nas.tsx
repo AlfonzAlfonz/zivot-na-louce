@@ -9,7 +9,7 @@ import { FiFacebook, FiInstagram, FiYoutube } from "react-icons/fi";
 import { request } from "../data";
 import { aboutUsQuery } from "../data/aboutUs";
 import { AboutUsQuery, SupportQuery } from "../graphql";
-import { YOUTUBE_HANDLE, YOUTUBE_URL } from '../components/Layout';
+import { YOUTUBE_HANDLE, YOUTUBE_URL } from "../components/Layout";
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -24,7 +24,7 @@ const AboutUs: FC<AboutUsQuery & SupportQuery> = ({ aboutUs, support }) => {
   return (
     <Layout title={aboutUs.title} bg="jk-2" description={aboutUs.whoWeAreText.json} support={support}>
 
-      <div className="flex flex-col max-w-7xl m-auto space-y-32 mt-24 items-center">
+      <div className="container space-y-32 mt-24">
         <Card title={aboutUs.whoWeAre} className="items-center">
           <Richtext value={aboutUs.whoWeAreText} />
         </Card>
@@ -39,7 +39,7 @@ const AboutUs: FC<AboutUsQuery & SupportQuery> = ({ aboutUs, support }) => {
       </div>
 
       <div className="mt-24 mb-24 py-16 bg-white">
-        <div className="flex flex-col mx-8 max-w-7xl md:m-auto">
+        <div className="container mx-8  md:m-auto">
           <h2 className="pb-8">{aboutUs.contact}</h2>
           <div className="flex flex-col md:flex-row space-y-8 md:space-y-0">
             <div className="md:w-3/4">

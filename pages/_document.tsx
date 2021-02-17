@@ -8,7 +8,7 @@ class MyDocument extends Document {
 
   render () {
     return (
-      <Html lang="cs">
+      <Html lang="cs" style={{ scrollBehavior: "smooth" }}>
         <Head>
           <meta
             name="viewport"

@@ -1,5 +1,5 @@
 overwrite: true
-schema: "https://graphql.contentful.com/content/v1/spaces/idt22mp7qe5g?access_token=tAetZoGEPwDyEu6dBbwTAQD50XcmXn3gCqOTtxY1gxo"
+schema: "https://graphql.contentful.com/content/v1/spaces/idt22mp7qe5g/environments/master?access_token=tAetZoGEPwDyEu6dBbwTAQD50XcmXn3gCqOTtxY1gxo"
 documents: "data/**/*.ts"
 generates:
   ./graphql.ts:

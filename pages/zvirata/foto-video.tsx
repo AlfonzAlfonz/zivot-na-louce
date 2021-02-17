@@ -21,7 +21,7 @@ const FotoVideo: FC<SupportQuery & AnimalsInfoQuery> = ({ support, animals }) =>
   const { lightbox, setState } = useLightbox(animals.photosCollection.items);
   return (
     <Layout title="Foto / Video" bg="jk-2" description="" support={support}>
-      <div className="flex flex-wrap max-w-7xl m-auto mb-16 mt-24">
+      <div className="container flex-row flex-wrap mb-16 mt-24">
         {animals.photosCollection.items.map((a, i) => (
           <div key={i} className="p-4 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full" onClick={() => setState(i)}>
             <Image src={a.url} alt={a.title} width={a.width} height={a.height} layout="responsive" />

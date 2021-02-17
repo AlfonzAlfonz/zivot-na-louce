@@ -19,7 +19,7 @@ export const getStaticProps: GetStaticProps = async () => ({
 const OpustiliNas: FC<SupportQuery & AnimalsRipQuery> = ({ support, animalCollection }) => {
   return (
     <Layout title="Opustili nás" bg="jk-2" description="" support={support}>
-      <div className="flex flex-col max-w-7xl m-auto mb-16 space-y-32 mt-24 items-center">
+      <div className="container space-y-32 mt-24">
         <CardStrip
           items={animalCollection.items.map(a => ({
             title: a.name,
