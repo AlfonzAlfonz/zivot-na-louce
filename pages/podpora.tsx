@@ -26,7 +26,7 @@ const Support: FC<SupportQuery> = ({ support }) => {
       </div>
 
       <div className="card mt-24 mb-24">
-        <div className="container flex-row">
+        <div className="container md:flex-row">
           <div className="md:w-2/3 space-y-4 py-8">
             <h2>{support.supportUsTitle}</h2>
 
