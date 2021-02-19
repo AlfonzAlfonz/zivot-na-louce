@@ -22,7 +22,7 @@ const Menu: FC = () => {
         link={["Žijem si", "/zijem-si"]}
         burger={burger}
         items={[
-          ["Virtuální adopce", "/zijem-si?ctg=clanek"],
+          ["Články", "/zijem-si?ctg=clanek"],
           ["Co se nám hodí", "/zijem-si/5XRKXdr0Dk7Dkc16gRmkeX/co-se-nam-hodi"],
           ["Akce", "/zijem-si?ctg=akce"],
           ["Recepty", "/zijem-si?ctg=recept"]

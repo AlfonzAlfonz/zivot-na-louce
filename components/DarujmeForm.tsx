@@ -9,7 +9,7 @@ const DarujmeForm: FC = () => {
     <div className="flex flex-col shadow-2xl p-8 space-y-4">
       <h3 className="text-2xl">Podpořte nás na Darujme.cz</h3>
       <div className="grid gap-4 grid-cols-2 w-full mb-4">
-        {["Jednorázově", "Denně"].map((v, i) => (
+        {["Jednorázově", "Měsíčně"].map((v, i) => (
           <div
             key={i}
             className={`px-0 text-center block border-gray-700 border-2 py-3 cursor-pointer transition-all ${recurring === !!i ? "bg-gray-700 text-white" : ""}`}
